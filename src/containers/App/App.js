@@ -9,6 +9,8 @@ import ImportKey from '../ImportKey/ImportKey';
 import MainWallet from '../MainWallet/MainWallet';
 import Landing from '../Landing/Landing';
 import CreateWallet from '../CreateWallet/CreateWallet';
+import CreatePassword from '../CreatePassword/CreatePassword';
+import ValidatePassword from '../ValidatePassword/ValidatePassword';
 
 
 class App extends Component {
@@ -20,6 +22,8 @@ class App extends Component {
             <Route path="/createWallet" component={CreateWallet}/>
             <Route path="/importKey" component={ImportKey}/>
             <Route path="/main" component={MainWallet}/>
+            <Route path="/createPassword" component={CreatePassword}/>
+            <Route path="/validatePassword" component={ValidatePassword}/>
             <Route component={Landing}/>
           </Switch>
         </div>

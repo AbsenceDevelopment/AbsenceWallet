@@ -12,7 +12,7 @@ class MainWallet extends Component {
 
   componentDidMount(){
     if (this.props.wallets && this.props.wallets.length !== 0) {
-      const privateKeyString = '0x' + this.props.wallets[0].privateKey;
+      const privateKeyString = this.props.wallets[0].privateKey;
       var wallet = new ethers.Wallet(privateKeyString, provider);
       wallet.getBalance()
       .then((data) => {

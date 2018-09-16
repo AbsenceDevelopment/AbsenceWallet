@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addWallet } from '../../actions/walletActions';
-import {walletsDb} from '../../localdb.js';
-
-
-var ethers = require('ethers');
-var provider = ethers.providers.getDefaultProvider();
 
 class ImportKey extends Component {
   constructor(props){
