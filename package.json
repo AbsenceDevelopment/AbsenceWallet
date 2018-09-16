@@ -6,6 +6,7 @@
   "private": true,
   "author": "bannik",
   "dependencies": {
+    "bip39": "^2.5.0",
     "cross-env": "^5.2.0",
     "electron-is-dev": "^0.3.0",
     "ethers": "^3.0.27",

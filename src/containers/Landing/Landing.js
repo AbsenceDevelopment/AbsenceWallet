@@ -25,7 +25,7 @@ class Landing extends Component {
       <div className="importForm">
         <header className="formHeader">
           <h1>hey</h1>
-          <Link to="/createWallet">Import From Public Key</Link>
+          <Link to="/createWallet">Create Wallet</Link>
           <Link to="/importKey">Import From Public Key</Link>
           <Link to="/importBip">Import From Mnemonic</Link>
         </header>

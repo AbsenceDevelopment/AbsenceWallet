@@ -8,6 +8,7 @@ import {
 import ImportKey from '../ImportKey/ImportKey';
 import MainWallet from '../MainWallet/MainWallet';
 import Landing from '../Landing/Landing';
+import CreateWallet from '../CreateWallet/CreateWallet';
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
       <Router>
         <div className="containerFluid flex column">
           <Switch>
+            <Route path="/createWallet" component={CreateWallet}/>
             <Route path="/importKey" component={ImportKey}/>
             <Route path="/main" component={MainWallet}/>
             <Route component={Landing}/>
