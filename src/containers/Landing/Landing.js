@@ -5,6 +5,7 @@ import {
 import { connect } from 'react-redux';
 
 import { passwordDb } from '../../localdb.js';
+import {walletsDb} from '../../localdb.js';
 import { addPassword } from '../../actions/passwordActions';
 
 class Landing extends Component {

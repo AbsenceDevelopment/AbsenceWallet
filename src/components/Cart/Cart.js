@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './cart.scss';
 
 var ethers = require('ethers');
 var provider = ethers.providers.getDefaultProvider();
@@ -24,10 +25,17 @@ class Cart extends Component {
 
   render() {
     return (
-      <div className="passwordForm">
-        <h1>{this.props.wallet.walletName ? this.props.wallet.walletName : null}</h1>
-        <p>Balance {this.state.balance}</p>
-        <p>Address {this.state.address}</p>
+      <div className="flex column cardWrapper">
+        <h1>{this.props.wallet.walletName ? this.props.wallet.walletName : "A Wallet"}</h1>
+        <p><small>{this.state.address}</small></p>
+        <div className="flex row cardBalanceWrapper">
+          <div className="flex flex-grid-6">
+            <p>Ethereum</p>
+          </div>
+          <div className="flex flex-grid-6 last-flex">
+            <h2>{Number(this.state.balance).toFixed(7)}</h2>
+          </div>
+        </div>
       </div>
     );
   }

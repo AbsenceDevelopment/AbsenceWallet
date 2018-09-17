@@ -24,6 +24,9 @@ class MainWallet extends Component {
         }
       }
     });
+    // walletsDb.get('0xAFEEBCFE8D8AF79D8EA3559941898495D9B77F359FF5AE10286F829550AF8316').then(function (doc) {
+    //   return walletsDb.remove(doc);
+    // });
   }
 
   render() {
@@ -33,7 +36,14 @@ class MainWallet extends Component {
     return (
       <div className="flex row mainContainerWrap">
         <Sidebar/>
-        {wallets}
+        <div className="flex column flex-grid-8 last-flex mainContentWrapper">
+          <div className="flex column cardsListWrapper">
+            <h1>My Wallets</h1>
+            <div className="flex row cardsList">
+              {wallets}
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

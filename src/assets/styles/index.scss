@@ -21,7 +21,7 @@ body {
 }
 h1,h2,h3,h4,h5{
   margin: 0px;
-  color: $brandGrey;
+  color: $brandBlack;
 }
 h1{
   font-size: $h1Size;
@@ -91,97 +91,121 @@ p{
 .flex-grid-1{
   margin-right: 20px;
   width: calc((100% / 12) * 1 - 20px);
+  min-width: calc((100% / 12) * 1 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 1);
+    min-width: calc((100% / 12) * 1);
   }
 }
 .flex-grid-2{
   margin-right: 20px;
   width: calc((100% / 12) * 2 - 20px);
+  min-width: calc((100% / 12) * 2 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 2);
+    min-width: calc((100% / 12) * 2);
   }
 }
 .flex-grid-3{
   margin-right: 20px;
   width: calc((100% / 12) * 3 - 20px);
+  min-width: calc((100% / 12) * 3 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 3);
+    min-width: calc((100% / 12) * 3);
   }
 }
 .flex-grid-4{
   margin-right: 20px;
   width: calc((100% / 12) * 4 - 20px);
+  min-width: calc((100% / 12) * 4 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 4);
+    min-width: calc((100% / 12) * 4);
   }
 }
 .flex-grid-5{
   margin-right: 20px;
   width: calc((100% / 12) * 5 - 20px);
+  min-width: calc((100% / 12) * 5 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 5);
+    min-width: calc((100% / 12) * 5);
   }
 }
 .flex-grid-6{
   margin-right: 20px;
   width: calc((100% / 12) * 6 - 20px);
+  min-width: calc((100% / 12) * 6 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 6);
+    min-width: calc((100% / 12) * 6);
   }
 }
 .flex-grid-7{
   margin-right: 20px;
   width: calc((100% / 12) * 7 - 20px);
+  min-width: calc((100% / 12) * 7 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 7);
+    min-width: calc((100% / 12) * 7);
   }
 }
 .flex-grid-8{
   margin-right: 20px;
   width: calc((100% / 12) * 8 - 20px);
+  min-width: calc((100% / 12) * 8 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 8);
+    min-width: calc((100% / 12) * 8);
   }
 }
 .flex-grid-9{
   margin-right: 20px;
   width: calc((100% / 12) * 9 - 20px);
+  min-width: calc((100% / 12) * 9 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 9);
+    min-width: calc((100% / 12) * 9);
   }
 }
 .flex-grid-10{
   margin-right: 20px;
   width: calc((100% / 12) * 10 - 20px);
+  min-width: calc((100% / 12) * 10 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 10);
+    min-width: calc((100% / 12) * 10);
   }
 }
 .flex-grid-11{
   margin-right: 20px;
   width: calc((100% / 12) * 11 - 20px);
+  min-width: calc((100% / 12) * 11 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 11);
+    min-width: calc((100% / 12) * 11);
   }
 }
 .flex-grid-12{
   margin-right: 20px;
   width: calc((100% / 12) * 12 - 20px);
+  min-width: calc((100% / 12) * 12 - 20px);
   &.last-flex{
     margin-right: 0px;
     width: calc((100% / 12) * 12);
+    min-width: calc((100% / 12) * 12);
   }
 }
 .alignCenter{
