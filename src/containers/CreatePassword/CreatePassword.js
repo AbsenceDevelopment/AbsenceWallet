@@ -12,14 +12,20 @@ class CreatePassword extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onKeyChange(event){
+  onPasswordChange(event){
     this.setState({password: event.target.value});
   }
+  onPasswordConfirmChange(event){
+    this.setState({passwordConfirm: event.target.value});
+  }
   onSubmit(){
-    if (this.state.password.length !== 0) {
+    if (this.state.password === this.state.passwordConfirm) {
       this.props.addPassword(this.state.password);
-      this.props.history.push('/validatePassword');
+      this.props.history.push('/createPassword');
     }
+  }
+  onCreate(){
+    this.setState({passwordSet: true});
   }
   render() {
     return (
@@ -28,8 +34,17 @@ class CreatePassword extends Component {
           <h1>Welcome to Absence</h1>
           <p>Provide your password</p>
         </header>
-        <input type="text" placeholder="Your Password" onChange={this.onKeyChange}/>
-        <button onClick={this.onSubmit}>Create Password</button>
+        {this.state.passwordSet ? (
+          <div>
+            <input type="text" placeholder="Set Password" onChange={this.onKeyChange}/>
+            <button onClick={this.onCreate}>Create Password</button>
+          </div>
+        ) : (
+          <div>
+            <input type="text" placeholder="Confirm Password" onChange={this.onPasswordConfirmChange}/>
+            <button onClick={this.onSubmit}>Confirm Password</button>
+          </div>
+        )}
       </div>
     );
   }

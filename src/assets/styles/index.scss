@@ -1,0 +1,201 @@
+@import './var.scss';
+@import './btn.scss';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+
+html{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: white;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  color: $brandBlack;
+  background-color: $brandGrey;
+  font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3,h4,h5{
+  margin: 0px;
+  color: $brandGrey;
+}
+h1{
+  font-size: $h1Size;
+}
+h2{
+  font-size: $h2Size;
+  font-weight: 400;
+}
+h3{
+  font-size: $h3Size;
+  font-weight: 300;
+}
+h4{
+  font-size: $h4Size;
+  font-weight: 300;
+}
+h5{
+  font-size: $h5Size;
+  font-weight: 300;
+}
+p{
+  font-weight: 300;
+}
+
+#root{
+  height: 100%;
+}
+
+.flex{
+  display: flex;
+}
+.flexAuto{
+  flex: auto;
+}
+.flexWrap{
+  flex-wrap: wrap;
+}
+.row{
+  flex-direction: row;
+}
+.column{
+  flex-direction: column;
+}
+.container{
+  width: 1140px;
+  margin: 0px auto;
+}
+.containerFluid{
+  width: 100%;
+}
+.contentRow{
+  padding-bottom: 50px;
+  h1{
+    margin: 0px;
+  }
+  &:first-child{
+    padding-top: 100px;
+  }
+}
+.flex1{
+  flex: 1;
+}
+.flex10{
+  flex: 10;
+}
+
+.flex-grid-1{
+  margin-right: 20px;
+  width: calc((100% / 12) * 1 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 1);
+  }
+}
+.flex-grid-2{
+  margin-right: 20px;
+  width: calc((100% / 12) * 2 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 2);
+  }
+}
+.flex-grid-3{
+  margin-right: 20px;
+  width: calc((100% / 12) * 3 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 3);
+  }
+}
+.flex-grid-4{
+  margin-right: 20px;
+  width: calc((100% / 12) * 4 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 4);
+  }
+}
+.flex-grid-5{
+  margin-right: 20px;
+  width: calc((100% / 12) * 5 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 5);
+  }
+}
+.flex-grid-6{
+  margin-right: 20px;
+  width: calc((100% / 12) * 6 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 6);
+  }
+}
+.flex-grid-7{
+  margin-right: 20px;
+  width: calc((100% / 12) * 7 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 7);
+  }
+}
+.flex-grid-8{
+  margin-right: 20px;
+  width: calc((100% / 12) * 8 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 8);
+  }
+}
+.flex-grid-9{
+  margin-right: 20px;
+  width: calc((100% / 12) * 9 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 9);
+  }
+}
+.flex-grid-10{
+  margin-right: 20px;
+  width: calc((100% / 12) * 10 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 10);
+  }
+}
+.flex-grid-11{
+  margin-right: 20px;
+  width: calc((100% / 12) * 11 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 11);
+  }
+}
+.flex-grid-12{
+  margin-right: 20px;
+  width: calc((100% / 12) * 12 - 20px);
+  &.last-flex{
+    margin-right: 0px;
+    width: calc((100% / 12) * 12);
+  }
+}
+.alignCenter{
+  align-items: center;
+}
+.justifyEnd{
+  justify-content: flex-end;
+}
+.justifyCenter{
+  justify-content: center;
+}
+.minHeightContent{
+  height: min-content;
+  height: -moz-min-content;
+  min-height: min-content;
+  min-height: -moz-min-content;
+}

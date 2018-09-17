@@ -1,0 +1,41 @@
+@import '../../assets/styles/var.scss';
+
+.sidebarWrapper{
+  background-color: $brandBlue;
+  .logoWrapper{
+    padding: 30px;
+    img{
+      width: max-content;
+      width: -moz-max-content;
+    }
+  }
+  .navWrapper{
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      a{
+        color: white;
+        text-decoration: none;
+        padding: 20px 30px;
+        display: block;
+        font-size: 18px;
+      }
+    }
+  }
+  .newWalletWrapper{
+    justify-content: flex-end;
+    padding: 30px;
+    h3{
+      font-size: 18px;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    .btn{
+      margin-bottom: 10px;
+      &:last-child{
+        margin-bottom: 0px;
+      }
+    }
+  }
+}

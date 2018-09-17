@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { walletsDb } from '../../localdb.js';
+import { addWallet } from '../../actions/walletActions';
+import Cart from '../../components/Cart/Cart';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
-var ethers = require('ethers');
-var provider = ethers.providers.getDefaultProvider();
+import './mainWallet.scss';
 
 class MainWallet extends Component {
   constructor(props){
@@ -10,38 +13,37 @@ class MainWallet extends Component {
     this.state = {}
   }
 
-  componentDidMount(){
-    if (this.props.wallets && this.props.wallets.length !== 0) {
-      const privateKeyString = this.props.wallets[0].privateKey;
-      var wallet = new ethers.Wallet(privateKeyString, provider);
-      wallet.getBalance()
-      .then((data) => {
-        this.setState({
-          balance: ethers.utils.formatEther(data),
-          address: wallet.address
-        })
-      });
-    }else{
-      this.props.history.push('/');
-    }
+  componentWillMount(){
+    let self = this;
+    walletsDb.allDocs().then(function(res){
+      if (res.total_rows !== 0) {
+        for (var i = 0; i < res.rows.length; i++) {
+          walletsDb.get(res.rows[i].id).then(function(res){
+            self.props.addWallet(res);
+          })
+        }
+      }
+    });
   }
 
   render() {
+    let wallets = this.props.wallets.map((wallet, i) =>
+      <Cart wallet={wallet} key={i}/>
+    );
     return (
-      <div className="importForm">
-        <header className="formHeader">
-          <h1>hey</h1>
-          <p>Address: {this.state.address}</p>
-          <p>Balance: {this.state.balance}</p>
-        </header>
+      <div className="flex row mainContainerWrap">
+        <Sidebar/>
+        {wallets}
       </div>
     );
   }
 }
 
-
 const mapStateToProps = state => ({
- ...state
+  ...state
 })
-export default connect(mapStateToProps)(MainWallet);
+const mapDispatchToProps = dispatch => ({
+ addWallet: (data) => dispatch(addWallet(data))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(MainWallet);
 // AFEEBCFE8D8AF79D8EA3559941898495D9B77F359FF5AE10286F829550AF8316

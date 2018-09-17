@@ -10,20 +10,22 @@ import MainWallet from '../MainWallet/MainWallet';
 import Landing from '../Landing/Landing';
 import CreateWallet from '../CreateWallet/CreateWallet';
 import CreatePassword from '../CreatePassword/CreatePassword';
-import ValidatePassword from '../ValidatePassword/ValidatePassword';
+import AuthPassword from '../AuthPassword/AuthPassword';
+
+import './app.scss';
 
 
 class App extends Component {
   render(){
     return(
       <Router>
-        <div className="containerFluid flex column">
+        <div className="containerFluid flex column appWrapper">
           <Switch>
             <Route path="/createWallet" component={CreateWallet}/>
             <Route path="/importKey" component={ImportKey}/>
             <Route path="/main" component={MainWallet}/>
             <Route path="/createPassword" component={CreatePassword}/>
-            <Route path="/validatePassword" component={ValidatePassword}/>
+            <Route path="/validatePassword" component={AuthPassword}/>
             <Route component={Landing}/>
           </Switch>
         </div>

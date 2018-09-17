@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   Link
 } from 'react-router-dom'
+import { connect } from 'react-redux';
 
-import {passwordDb, walletsDb} from '../../localdb.js';
-import { addWallet } from '../../actions/walletActions';
+import { passwordDb } from '../../localdb.js';
+import { addPassword } from '../../actions/passwordActions';
 
 class Landing extends Component {
   constructor(props){
@@ -19,16 +19,8 @@ class Landing extends Component {
       }
     }).then(function (doc) {
       if (doc) {
-        walletsDb.allDocs().then(function(res){
-          if (res.total_rows !== 0) {
-            for (var i = 0; i < res.rows.length; i++) {
-              walletsDb.get(res.rows[i].id).then(function(res){
-                self.props.addWallet(res);
-                self.props.history.push('/main');
-              })
-            }
-          }
-        });
+        self.props.addPassword(doc.password);
+        self.props.history.push('/validatePassword');
       }
     });
   }
@@ -51,9 +43,9 @@ class Landing extends Component {
 }
 
 const mapStateToProps = state => ({
- ...state
+  ...state
 })
 const mapDispatchToProps = dispatch => ({
- addWallet: (data) => dispatch(addWallet(data))
+ addPassword: (data) => dispatch(addPassword(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);

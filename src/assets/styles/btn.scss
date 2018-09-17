@@ -1,0 +1,22 @@
+.btn{
+  padding: 15px 30px;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: white;
+  color: #155FDC;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,0.20);
+  &.btnPink{
+    background-color: #FF4D81;
+    background-image: linear-gradient(-135deg, $brandPink 0%, $brandLightPink 100%);
+    color: white;
+  }
+  &.btnDarkBlue{
+    background-color: $brandDarkBlue;
+    color: white;
+    box-shadow: none;
+  }
+}
