@@ -1,6 +1,27 @@
 .authWrapper{
   height: 100%;
   align-self: center;
+  .landingWrap{
+    width: 650px;
+    h1{
+      font-size: 28px;
+      font-weight: 300;
+    }
+    p{
+      font-size: 16px;
+      color: rgba(0,0,0,.5);
+      margin-bottom: 0px;
+      margin-top: 10px;
+    }
+    .landingActionsWrap{
+      .btn{
+        margin-bottom: 10px;
+        &:last-child{
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
   .authBox{
     width: 650px;
     background-color: white;

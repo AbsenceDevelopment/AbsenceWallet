@@ -29,11 +29,18 @@ class Landing extends Component {
   }
   render() {
     return (
-      <div className="importForm">
-        <h1>Welcome to Absence</h1>
-        <Link to="/createWallet">Create Wallet</Link>
-        <Link to="/importKey">Import From Public Key</Link>
-        <Link to="/importMnemonic">Import From Mnemonic</Link>
+      <div className="flex column justifyCenter authWrapper">
+        <div className="flex row landingWrap">
+          <div className="flex column flex-grid-8 justifyCenter">
+            <h1>Welcome to Absence</h1>
+            <p>The next generation Ethereum Wallet</p>
+          </div>
+          <div className="flex column flex-grid-4 landingActionsWrap justifyCenter last-flex">
+            <Link className="btn btnBlue" to="/createWallet">Create Wallet</Link>
+            <Link className="btn btnDarkBlue" to="/importKey">Import From Public Key</Link>
+            <Link className="btn btnPink" to="/importMnemonic">Import From Mnemonic</Link>
+          </div>
+        </div>
       </div>
     );
   }
