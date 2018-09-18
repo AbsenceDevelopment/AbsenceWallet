@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addWallet } from '../../actions/walletActions';
 import bip39 from 'bip39';
-
-import {walletsDb} from '../../localdb.js';
+import { walletDb } from '../../localdb.js';
 
 var ethers = require('ethers');
+const cryptoJSON = require('crypto-json');
 
 class CreateWallet extends Component {
   constructor(props){
@@ -20,14 +20,22 @@ class CreateWallet extends Component {
 
   createWallet(){
     let self = this;
-    var wallet = ethers.Wallet.fromMnemonic(this.state.mnemonic);
-    let walletData = {_id: wallet.address, privateKey: wallet.privateKey, walletName: this.state.walletName};
-    walletsDb.put(walletData).then(function(){
-      self.props.history.push('/main');
-    });
+    if (bip39.validateMnemonic(this.state.mnemonic)) {
+      var wallet = ethers.Wallet.fromMnemonic(this.state.mnemonic);
+      let walletData = {_id: wallet.address, privateKey: wallet.privateKey, walletName: this.state.walletName, walletMnemonic: this.state.mnemonic};
+      let walletOutput = cryptoJSON.encrypt(walletData, this.props.password);
+      walletDb.insert(walletOutput, function (err, newDoc) {
+        self.props.addWallet(walletData);
+        self.props.history.push('/main');
+      });
+    }
   }
   componentWillMount(){
-    this.generateMnemonic();
+    if (this.props.initialLogin) {
+      this.props.history.push('/createPassword');
+    }else{
+      this.generateMnemonic();
+    }
   }
   onMenmonicChange(event){
     this.setState({mnemonic: event.target.value});
@@ -45,7 +53,7 @@ class CreateWallet extends Component {
         <header className="formHeader">
           <h1>Welcome to Absence</h1>
           <p>Create Wallet</p>
-          <input type="text" value={this.state.mnemonic} placeholder="Type in 12 words"/>
+          <input type="text" defaultValue={this.state.mnemonic} placeholder="Type in 12 words"/>
           <input type="text" value={this.state.walletName} placeholder="Wallet Name"/>
           <button onClick={this.generateMnemonic}>Generate Mnemonic</button>
           <button onClick={this.createWallet}>Create Wallet</button>

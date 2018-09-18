@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { updateWallet } from '../../actions/walletActions';
+import { addPassword } from '../../actions/passwordActions';
 
-import {walletsDb} from '../../localdb.js';
-
-import { addWallet } from '../../actions/walletActions';
+const cryptoJSON = require('crypto-json')
 
 class AuthPassword extends Component {
   constructor(props){
@@ -19,9 +19,15 @@ class AuthPassword extends Component {
   }
   onSubmit(){
     let self = this;
-    if (this.state.password === this.props.password) {
-      self.props.history.push('/main');
+    for (var i = 0; i < this.props.wallets.length; i++) {
+      if (cryptoJSON.decrypt(this.props.wallets[i], this.state.password)) {
+        let decryptedWallet = cryptoJSON.decrypt(this.props.wallets[i], this.state.password);
+        decryptedWallet._id = this.props.wallets[i].id;
+        this.props.addPassword(this.state.password);
+        this.props.updateWallet(decryptedWallet)
+      }
     }
+    self.props.history.push('/main');
   }
   render() {
     return (
@@ -39,9 +45,10 @@ class AuthPassword extends Component {
 
 
 const mapStateToProps = state => ({
-  password: state.password
+  wallets: state.wallets
 })
 const mapDispatchToProps = dispatch => ({
- addWallet: (data) => dispatch(addWallet(data))
+ updateWallet: (data) => dispatch(updateWallet(data)),
+ addPassword: (data) => dispatch(addPassword(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(AuthPassword);

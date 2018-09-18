@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addWallet } from '../../actions/walletActions';
-import {walletsDb} from '../../localdb.js';
+import { walletDb } from '../../localdb.js';
+
+const cryptoJSON = require('crypto-json')
+var ethers = require('ethers');
+
 
 class ImportKey extends Component {
   constructor(props){
@@ -11,16 +15,23 @@ class ImportKey extends Component {
     this.onKeyChange = this.onKeyChange.bind(this);
     this.onNameChange = this.onNameChange.bind(this);
   }
-
+  componentWillMount(){
+    if (this.props.initialLogin) {
+      this.props.history.push('/createPassword');
+    }
+  }
   simpleAction = (event) => {
     let self = this;
-    if (this.state.privateKey) {
-      let walletData = {_id: this.state.privateKey, privateKey: this.state.privateKey, walletName: this.state.walletName};
-      walletsDb.put(walletData).then(function(){
+    if (this.state.privateKey && new ethers.Wallet(this.state.privateKey)) {
+      var wallet = new ethers.Wallet(this.state.privateKey);
+      let walletData = {_id: wallet.address, privateKey: this.state.privateKey, walletName: this.state.walletName};
+      let walletOutput = cryptoJSON.encrypt(walletData, this.props.password);
+      walletDb.insert(walletOutput, function (err, newDoc) {
+        self.props.addWallet(walletData);
         self.props.history.push('/main');
       });
     }else{
-      alert('Please provide a private key')
+      alert('Please provide a valid private key')
     }
   }
   onKeyChange(event){

@@ -4,9 +4,9 @@ import {
 } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { passwordDb } from '../../localdb.js';
-import {walletsDb} from '../../localdb.js';
-import { addPassword } from '../../actions/passwordActions';
+import { walletDb } from '../../localdb.js';
+import { addWallet } from '../../actions/walletActions';
+import { updateInitial } from '../../actions/appStateActions';
 
 class Landing extends Component {
   constructor(props){
@@ -15,29 +15,25 @@ class Landing extends Component {
   }
   componentDidMount(){
     let self = this;
-    passwordDb.get('mainPass').catch(function (err) {
-      if (err.name === 'not_found') {
-      }
-    }).then(function (doc) {
-      if (doc) {
-        self.props.addPassword(doc.password);
+    walletDb.find({}, function (err, docs) {
+      if (docs.length !== 0) {
+        self.props.updateInitial(false);
+        for (var i = 0; i < docs.length; i++) {
+          self.props.addWallet(docs[i]);
+        }
         self.props.history.push('/validatePassword');
+      }else{
+        self.props.updateInitial(true);
       }
-    });
-  }
-  removePass(){
-    passwordDb.get('mainPass').then(function (doc) {
-      return passwordDb.remove(doc);
     });
   }
   render() {
     return (
       <div className="importForm">
         <h1>Welcome to Absence</h1>
-        <Link to="/createPassword">Create Wallet</Link>
+        <Link to="/createWallet">Create Wallet</Link>
         <Link to="/importKey">Import From Public Key</Link>
         <Link to="/importMnemonic">Import From Mnemonic</Link>
-        <button onClick={this.removePass}>Empty Password</button>
       </div>
     );
   }
@@ -47,6 +43,7 @@ const mapStateToProps = state => ({
   ...state
 })
 const mapDispatchToProps = dispatch => ({
- addPassword: (data) => dispatch(addPassword(data))
+ addWallet: (data) => dispatch(addWallet(data)),
+ updateInitial: (data) => dispatch(updateInitial(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Landing);

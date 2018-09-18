@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { walletsDb } from '../../localdb.js';
 import { addWallet } from '../../actions/walletActions';
 import Cart from '../../components/Cart/Cart';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import { walletDb } from '../../localdb.js';
 
 import './mainWallet.scss';
 
@@ -14,24 +14,14 @@ class MainWallet extends Component {
   }
 
   componentWillMount(){
-    let self = this;
-    walletsDb.allDocs().then(function(res){
-      if (res.total_rows !== 0) {
-        for (var i = 0; i < res.rows.length; i++) {
-          walletsDb.get(res.rows[i].id).then(function(res){
-            self.props.addWallet(res);
-          })
-        }
-      }
-    });
-    // walletsDb.get('0xFFd7Ae7D3835E783ff745E18beD41C343BfB3Be2').then(function (doc) {
-    //   return walletsDb.remove(doc);
-    // });
+    if (this.props.wallets.length === 0) {
+      this.props.history.push('/landing')
+    }
   }
 
   render() {
     let wallets = this.props.wallets.map((wallet, i) =>
-      <Cart wallet={wallet} key={i} walletDb={walletsDb}/>
+      <Cart wallet={wallet} key={i}/>
     );
     return (
       <div className="flex row mainContainerWrap">
