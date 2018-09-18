@@ -28,7 +28,6 @@ class Cart extends Component {
       <div className="flex column cardWrapper">
         <h1>{this.props.wallet.walletName ? this.props.wallet.walletName : "A Wallet"}</h1>
         <p><small>{this.state.address}</small></p>
-        <p><small>{this.props.wallet.privateKey}</small></p>
         <div className="flex row cardBalanceWrapper">
           <div className="flex flex-grid-6">
             <p>Ethereum</p>
