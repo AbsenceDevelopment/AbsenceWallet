@@ -25,8 +25,12 @@ class CreateWallet extends Component {
       let walletData = {_id: wallet.address, privateKey: wallet.privateKey, walletName: this.state.walletName, walletMnemonic: this.state.mnemonic};
       let walletOutput = cryptoJSON.encrypt(walletData, this.props.password);
       walletDb.insert(walletOutput, function (err, newDoc) {
-        self.props.addWallet(walletData);
-        self.props.history.push('/main');
+        if (err) {
+
+        }else{
+          self.props.addWallet(walletData);
+          self.props.history.push('/main');
+        }
       });
     }
   }
@@ -49,15 +53,29 @@ class CreateWallet extends Component {
   }
   render() {
     return (
-      <div className="importForm">
-        <header className="formHeader">
-          <h1>Welcome to Absence</h1>
-          <p>Create Wallet</p>
-          <input type="text" defaultValue={this.state.mnemonic} placeholder="Type in 12 words"/>
-          <input type="text" value={this.state.walletName} placeholder="Wallet Name"/>
-          <button onClick={this.generateMnemonic}>Generate Mnemonic</button>
-          <button onClick={this.createWallet}>Create Wallet</button>
-        </header>
+      <div className="flex column justifyCenter authWrapper">
+        <div className="flex row authBox">
+          <div className="flex column flex-grid-8">
+            <h1>Welcome to Absence</h1>
+            <p>The next generation Ethereum Wallet</p>
+          </div>
+          <div className="flex column flex-grid-4 formWrap">
+            <h2>Create Wallet</h2>
+            <p>Create a new wallet based on the mnemonic bellow. Remember to save the mnemonic!</p>
+            <form className="flex column flexAuto justifyEnd" onSubmit={this.createWallet}>
+              <div className="flex column inputWrap">
+                <label htmlFor="walletName">Wallet Name</label>
+                <input id="walletName" type="text" defaultValue={this.state.walletName} placeholder="Wallet Name"/>
+              </div>
+              <div className="flex column inputWrap">
+                <label htmlFor="walletMnemonic">Wallet Mnemonic</label>
+                <input id="walletMnemonic" type="text" defaultValue={this.state.mnemonic} placeholder="Type in 12 words"/>
+              </div>
+              <button className="btn btnPink" onClick={this.generateMnemonic}>Generate Mnemonic</button>
+              <button className="btn btnBlue" onClick={this.createWallet}>Create Wallet</button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

@@ -24,8 +24,11 @@ class ImportMnemonic extends Component {
       let walletData = {_id: wallet.address, privateKey: wallet.privateKey, walletName: this.state.walletName, walletMnemonic: this.state.mnemonic};
       let walletOutput = cryptoJSON.encrypt(walletData, this.props.password);
       walletDb.insert(walletOutput, function (err, newDoc) {
-        self.props.addWallet(walletData);
-        self.props.history.push('/main');
+        if (err) {
+        }else{
+          self.props.addWallet(walletData);
+          self.props.history.push('/main');
+        }
       });
     }
   }
@@ -42,14 +45,28 @@ class ImportMnemonic extends Component {
   }
   render() {
     return (
-      <div className="importForm">
-        <header className="formHeader">
-          <h1>Welcome to Absence</h1>
-          <p>Import from Mnemonic</p>
-          <input type="text" value={this.state.mnemonic} onChange={this.onMnemonicChange} placeholder="Type in 12 words"/>
-          <input type="text" value={this.state.walletName} onChange={this.onNameChange} placeholder="Wallet Name"/>
-          <button onClick={this.createWallet}>Create Wallet</button>
-        </header>
+      <div className="flex column justifyCenter authWrapper">
+        <div className="flex row authBox">
+          <div className="flex column flex-grid-8">
+            <h1>Welcome to Absence</h1>
+            <p>The next generation Ethereum Wallet</p>
+          </div>
+          <div className="flex column flex-grid-4 formWrap">
+            <h2>Import Mnemonic</h2>
+            <p>Import an existing wallet from a mnemonic</p>
+            <form className="flex column flexAuto justifyEnd" onSubmit={this.createWallet}>
+              <div className="flex column inputWrap">
+                <label htmlFor="walletName">Wallet Name</label>
+                <input id="walletName" type="text" defaultValue={this.state.walletName} onChange={this.onNameChange} placeholder="Wallet Name"/>
+              </div>
+              <div className="flex column inputWrap">
+                <label htmlFor="walletMnemonic">Wallet Mnemonic</label>
+                <input id="walletMnemonic" type="text" defaultValue={this.state.mnemonic} onChange={this.onMnemonicChange} placeholder="Type in 12 words"/>
+              </div>
+              <button className="btn btnBlue" onClick={this.createWallet}>Import Wallet</button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

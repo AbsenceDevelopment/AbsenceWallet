@@ -31,13 +31,24 @@ class AuthPassword extends Component {
   }
   render() {
     return (
-      <div className="passwordForm">
-        <header className="formHeader">
-          <h1>Welcome to Absence</h1>
-          <p>Validate your password</p>
-        </header>
-        <input type="text" placeholder="Validate your Password" onChange={this.onKeyChange}/>
-        <button onClick={this.onSubmit}>Create Password</button>
+      <div className="flex column justifyCenter authWrapper">
+        <div className="flex row authBox">
+          <div className="flex column flex-grid-8">
+            <h1>Welcome to Absence</h1>
+            <p>The next generation Ethereum Wallet</p>
+          </div>
+          <div className="flex column flex-grid-4 formWrap">
+            <h2>Unlock your Account</h2>
+            <p>Provide your master password in order to unlock your account</p>
+            <form className="flex column flexAuto justifyEnd" onSubmit={this.onSubmit}>
+              <div className="flex column inputWrap">
+                <label htmlFor="password">Your Password</label>
+                <input id="password" type="password" placeholder="Validate your Password" onChange={this.onKeyChange}/>
+              </div>
+              <button className="btn btnBlue" onClick={this.onSubmit}>Unlock Account</button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

@@ -20,15 +20,19 @@ class ImportKey extends Component {
       this.props.history.push('/createPassword');
     }
   }
-  simpleAction = (event) => {
+  importKey(event){
     let self = this;
     if (this.state.privateKey && new ethers.Wallet(this.state.privateKey)) {
       var wallet = new ethers.Wallet(this.state.privateKey);
       let walletData = {_id: wallet.address, privateKey: this.state.privateKey, walletName: this.state.walletName};
       let walletOutput = cryptoJSON.encrypt(walletData, this.props.password);
       walletDb.insert(walletOutput, function (err, newDoc) {
-        self.props.addWallet(walletData);
-        self.props.history.push('/main');
+        if (err) {
+          console.log(err);
+        }else{
+          self.props.addWallet(walletData);
+          self.props.history.push('/main');
+        }
       });
     }else{
       alert('Please provide a valid private key')
@@ -42,14 +46,28 @@ class ImportKey extends Component {
   }
   render() {
     return (
-      <div className="importForm">
-        <header className="formHeader">
-          <h1>Welcome to Absence</h1>
-          <p>Provide your private key and give your wallet a name to start with</p>
-        </header>
-        <input type="text" placeholder="Your Private Key" onChange={this.onKeyChange}/>
-        <input type="text" placeholder="Your Wallet Name" onChange={this.onNameChange}/>
-        <button onClick={this.simpleAction}>Submit</button>
+      <div className="flex column justifyCenter authWrapper">
+        <div className="flex row authBox">
+          <div className="flex column flex-grid-8">
+            <h1>Welcome to Absence</h1>
+            <p>The next generation Ethereum Wallet</p>
+          </div>
+          <div className="flex column flex-grid-4 formWrap">
+            <h2>Import Private Key</h2>
+            <p>Import a wallet from an existing private key</p>
+            <form className="flex column flexAuto justifyEnd" onSubmit={this.importKey}>
+              <div className="flex column inputWrap">
+                <label htmlFor="walletName">Wallet Name</label>
+                <input id="walletName" type="text" placeholder="Your Wallet Name" onChange={this.onNameChange}/>
+              </div>
+              <div className="flex column inputWrap">
+                <label htmlFor="privateKey">Private Key</label>
+                <input id="privateKey" type="text" placeholder="Your Private Key" onChange={this.onKeyChange}/>
+              </div>
+              <button className="btn btnBlue" onClick={this.importKey}>Import Wallet</button>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

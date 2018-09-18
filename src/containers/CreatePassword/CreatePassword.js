@@ -7,7 +7,10 @@ import { updateInitial } from '../../actions/appStateActions';
 class CreatePassword extends Component {
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {
+      password: null,
+      passwordConfirm: null
+    }
 
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onPasswordConfirmChange = this.onPasswordConfirmChange.bind(this);
@@ -34,23 +37,29 @@ class CreatePassword extends Component {
   }
   render() {
     return (
-      <div className="passwordForm">
-        <header className="formHeader">
-          <h1>Welcome to Absence</h1>
-        </header>
-        {!this.state.passwordSet ? (
-          <div>
-            <p>Provide your password</p>
-            <input type="text" placeholder="Set Password" defaultValue={this.state.password} onChange={this.onPasswordChange}/>
-            <button onClick={this.onCreate}>Create Password</button>
+      <div className="flex column justifyCenter authWrapper">
+        <div className="flex row authBox">
+          <div className="flex column flex-grid-8">
+            <h1>Welcome to Absence</h1>
+            <p>The next generation Ethereum Wallet</p>
           </div>
-        ) : (
-          <div>
-            <p>Confirm your password</p>
-            <input type="text" placeholder="Confirm Password" defaultValue={this.state.passwordConfirm} onChange={this.onPasswordConfirmChange}/>
-            <button onClick={this.onSubmit}>Confirm Password</button>
+          <div className="flex column flex-grid-4 formWrap">
+            <h2>Create a Password</h2>
+            <p>In order to proceed you need to set a master password.</p>
+
+            <form className="flex column flexAuto justifyEnd" onSubmit={this.onCreate}>
+              <div className="flex column inputWrap">
+                <label htmlFor="createPassword">Your Password</label>
+                <input id="createPassword" type="password" placeholder="Set Password" value={this.state.password} onChange={this.onPasswordChange}/>
+              </div>
+              <div className="flex column inputWrap">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" type="password" placeholder="Confirm Password" value={this.state.passwordConfirm} onChange={this.onPasswordConfirmChange}/>
+              </div>
+              <button className="btn btnBlue" onClick={this.onSubmit}>Create Password</button>
+            </form>
           </div>
-        )}
+        </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 .btn{
-  padding: 15px 30px;
+  padding: 10px 20px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 14px;
   background-color: white;
   color: #155FDC;
   text-decoration: none;
@@ -9,14 +9,32 @@
   text-align: center;
   border-radius: 5px;
   box-shadow: 0 2px 10px 0 rgba(0,0,0,0.20);
+  cursor: pointer;
+  &:hover{
+    background-color: darken(#fff, 10%);
+  }
   &.btnPink{
     background-color: #FF4D81;
     background-image: linear-gradient(-135deg, $brandPink 0%, $brandLightPink 100%);
     color: white;
+    &:hover{
+      background-image: linear-gradient(-135deg, darken($brandPink, 5%) 0%, darken($brandLightPink, 5%) 100%);
+    }
   }
   &.btnDarkBlue{
     background-color: $brandDarkBlue;
     color: white;
     box-shadow: none;
+    &:hover{
+      background-color: darken($brandDarkBlue, 5%);
+    }
+  }
+  &.btnBlue{
+    background-color: $brandBlue;
+    color: white;
+    box-shadow: none;
+    &:hover{
+      background-color: darken($brandBlue, 5%);
+    }
   }
 }
