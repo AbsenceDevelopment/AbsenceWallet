@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addWallet } from '../../actions/walletActions';
+import { addWallet, selectWallet } from '../../actions/walletActions';
 import Cart from '../../components/Cart/Cart';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { walletDb } from '../../localdb.js';
@@ -21,7 +21,7 @@ class MainWallet extends Component {
 
   render() {
     let wallets = this.props.wallets.map((wallet, i) =>
-      <Cart wallet={wallet} key={i}/>
+      <Cart wallet={wallet} key={i} selectedWallet={wallet.id === this.props.selectedWallet ? true : false} onClick={this.props.selectWallet}/>
     );
     return (
       <div className="flex row mainContainerWrap">
@@ -43,6 +43,7 @@ const mapStateToProps = state => ({
   ...state
 })
 const mapDispatchToProps = dispatch => ({
+ selectWallet: (data) => dispatch(selectWallet(data)),
  addWallet: (data) => dispatch(addWallet(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(MainWallet);

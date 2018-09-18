@@ -24,8 +24,9 @@ class Cart extends Component {
   }
 
   render() {
+    let cardClasses = this.props.selectedWallet ? "flex column cardWrapper active" : "flex column cardWrapper";
     return (
-      <div className="flex column cardWrapper">
+      <div className={cardClasses} onClick={() => this.props.onClick(this.props.wallet.id)}>
         <h1>{this.props.wallet.walletName ? this.props.wallet.walletName : "A Wallet"}</h1>
         <p><small>{this.state.address}</small></p>
         <div className="flex row cardBalanceWrapper">

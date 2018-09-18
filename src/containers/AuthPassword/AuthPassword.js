@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateWallet } from '../../actions/walletActions';
+import { updateWallet, selectWallet } from '../../actions/walletActions';
 import { addPassword } from '../../actions/passwordActions';
 
 const cryptoJSON = require('crypto-json')
@@ -22,9 +22,12 @@ class AuthPassword extends Component {
     for (var i = 0; i < this.props.wallets.length; i++) {
       if (cryptoJSON.decrypt(this.props.wallets[i], this.state.password)) {
         let decryptedWallet = cryptoJSON.decrypt(this.props.wallets[i], this.state.password);
+        if (i === 0) {
+          this.props.selectWallet(decryptedWallet.id);
+        }
         decryptedWallet._id = this.props.wallets[i].id;
         this.props.addPassword(this.state.password);
-        this.props.updateWallet(decryptedWallet)
+        this.props.updateWallet(decryptedWallet);
       }
     }
     self.props.history.push('/main');
@@ -60,6 +63,7 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
  updateWallet: (data) => dispatch(updateWallet(data)),
+ selectWallet: (data) => dispatch(selectWallet(data)),
  addPassword: (data) => dispatch(addPassword(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(AuthPassword);
