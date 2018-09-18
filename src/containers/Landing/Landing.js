@@ -36,7 +36,7 @@ class Landing extends Component {
         <h1>Welcome to Absence</h1>
         <Link to="/createPassword">Create Wallet</Link>
         <Link to="/importKey">Import From Public Key</Link>
-        <Link to="/importBip">Import From Mnemonic</Link>
+        <Link to="/importMnemonic">Import From Mnemonic</Link>
         <button onClick={this.removePass}>Empty Password</button>
       </div>
     );

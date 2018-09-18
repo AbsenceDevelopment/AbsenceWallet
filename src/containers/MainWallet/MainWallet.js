@@ -24,19 +24,19 @@ class MainWallet extends Component {
         }
       }
     });
-    // walletsDb.get('0xAFEEBCFE8D8AF79D8EA3559941898495D9B77F359FF5AE10286F829550AF8316').then(function (doc) {
+    // walletsDb.get('0xFFd7Ae7D3835E783ff745E18beD41C343BfB3Be2').then(function (doc) {
     //   return walletsDb.remove(doc);
     // });
   }
 
   render() {
     let wallets = this.props.wallets.map((wallet, i) =>
-      <Cart wallet={wallet} key={i}/>
+      <Cart wallet={wallet} key={i} walletDb={walletsDb}/>
     );
     return (
       <div className="flex row mainContainerWrap">
-        <Sidebar/>
-        <div className="flex column flex-grid-8 last-flex mainContentWrapper">
+        <Sidebar location={this.props.location.pathname}/>
+        <div className="flex column flex-auto last-flex mainContentWrapper">
           <div className="flex column cardsListWrapper">
             <h1>My Wallets</h1>
             <div className="flex row cardsList">

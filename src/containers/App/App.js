@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import ImportKey from '../ImportKey/ImportKey';
+import ImportMnemonic from '../ImportMnemonic/ImportMnemonic';
 import MainWallet from '../MainWallet/MainWallet';
 import Landing from '../Landing/Landing';
 import CreateWallet from '../CreateWallet/CreateWallet';
@@ -23,6 +24,7 @@ class App extends Component {
           <Switch>
             <Route path="/createWallet" component={CreateWallet}/>
             <Route path="/importKey" component={ImportKey}/>
+            <Route path="/importMnemonic" component={ImportMnemonic}/>
             <Route path="/main" component={MainWallet}/>
             <Route path="/createPassword" component={CreatePassword}/>
             <Route path="/validatePassword" component={AuthPassword}/>

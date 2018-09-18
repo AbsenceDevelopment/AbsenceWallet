@@ -1,6 +1,8 @@
 @import '../../assets/styles/var.scss';
 
 .sidebarWrapper{
+  width: 300px;
+  min-width: 300px;
   background-color: $brandBlue;
   .logoWrapper{
     padding: 30px;
@@ -20,6 +22,9 @@
         padding: 20px 30px;
         display: block;
         font-size: 18px;
+        &.active{
+          background-color: rgba(255,255,255,.1);
+        }
       }
     }
   }
