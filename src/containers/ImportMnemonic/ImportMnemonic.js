@@ -17,8 +17,9 @@ class ImportMnemonic extends Component {
     this.createWallet = this.createWallet.bind(this);
   }
 
-  createWallet(){
+  createWallet(e){
     let self = this;
+    e.preventDefault();
     if (bip39.validateMnemonic(this.state.mnemonic)) {
       var wallet = ethers.Wallet.fromMnemonic(this.state.mnemonic);
       let walletData = {_id: wallet.address, privateKey: wallet.privateKey, walletName: this.state.walletName, walletMnemonic: this.state.mnemonic};

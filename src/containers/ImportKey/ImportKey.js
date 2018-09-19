@@ -20,8 +20,9 @@ class ImportKey extends Component {
       this.props.history.push('/createPassword');
     }
   }
-  importKey(event){
+  importKey(e){
     let self = this;
+    e.preventDefault();
     if (this.state.privateKey && new ethers.Wallet(this.state.privateKey)) {
       var wallet = new ethers.Wallet(this.state.privateKey);
       let walletData = {_id: wallet.address, privateKey: this.state.privateKey, walletName: this.state.walletName};

@@ -26,6 +26,11 @@ class Landing extends Component {
         self.props.updateInitial(true);
       }
     });
+    // walletDb.remove({ }, { multi: true }, function (err, numRemoved) {
+    //   walletDb.loadDatabase(function (err) {
+    //     // done
+    //   });
+    // });
   }
   render() {
     return (

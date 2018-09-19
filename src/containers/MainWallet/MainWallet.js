@@ -20,6 +20,9 @@ class MainWallet extends Component {
     if (this.props.wallets.length === 0) {
       this.props.history.push('/landing')
     }
+    else if (this.props.selectedWallet.length === 0) {
+      this.props.selectWallet(this.props.wallets[this.props.wallets.length - 1].id);
+    }
   }
 
   render() {

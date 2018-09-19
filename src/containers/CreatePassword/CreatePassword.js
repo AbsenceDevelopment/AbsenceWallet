@@ -1,39 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { addPassword } from '../../actions/passwordActions';
 import { updateInitial } from '../../actions/appStateActions';
+import { addPassword } from '../../actions/passwordActions';
+
+const cryptoJSON = require('crypto-json')
 
 class CreatePassword extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      password: null,
-      passwordConfirm: null
-    }
+    this.state = {}
 
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onPasswordConfirmChange = this.onPasswordConfirmChange.bind(this);
+    this.onKeyChange = this.onKeyChange.bind(this);
+    this.onConfirmChange = this.onConfirmChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.onCreate = this.onCreate.bind(this);
   }
 
-  onPasswordChange(event){
+  onKeyChange(event){
     this.setState({password: event.target.value});
   }
-  onPasswordConfirmChange(event){
-    this.setState({passwordConfirm: event.target.value});
+  onConfirmChange(event){
+    this.setState({confirmPassword: event.target.value});
   }
-  onSubmit(){
+  onSubmit(event){
     let self = this;
-    if (self.state.password === self.state.passwordConfirm) {
-      this.props.addPassword(self.state.password);
+    event.preventDefault()
+    if (this.state.password === this.state.confirmPassword) {
       this.props.updateInitial(false);
+      this.props.addPassword(this.state.password);
       this.props.history.goBack();
     }
-  }
-  onCreate(){
-    this.setState({passwordSet: true});
   }
   render() {
     return (
@@ -44,19 +39,18 @@ class CreatePassword extends Component {
             <p>The next generation Ethereum Wallet</p>
           </div>
           <div className="flex column flex-grid-4 formWrap">
-            <h2>Create a Password</h2>
-            <p>In order to proceed you need to set a master password.</p>
-
-            <form className="flex column flexAuto justifyEnd" onSubmit={this.onCreate}>
+            <h2>Create Password</h2>
+            <p>Create a new master password for your wallets</p>
+            <form className="flex column flexAuto justifyEnd" onSubmit={this.onSubmit}>
               <div className="flex column inputWrap">
-                <label htmlFor="createPassword">Your Password</label>
-                <input id="createPassword" type="password" placeholder="Set Password" value={this.state.password} onChange={this.onPasswordChange}/>
+                <label htmlFor="password">Your Password</label>
+                <input id="password" type="password" placeholder="Validate your Password" onChange={this.onKeyChange}/>
               </div>
               <div className="flex column inputWrap">
                 <label htmlFor="confirmPassword">Confirm Password</label>
-                <input id="confirmPassword" type="password" placeholder="Confirm Password" value={this.state.passwordConfirm} onChange={this.onPasswordConfirmChange}/>
+                <input id="confirmPassword" type="password" placeholder="Confirm your Password" onChange={this.onConfirmChange}/>
               </div>
-              <button className="btn btnBlue" onClick={this.onSubmit}>Create Password</button>
+              <button className="btn btnBlue" onClick={this.onSubmit}>Create Account</button>
             </form>
           </div>
         </div>
@@ -67,7 +61,7 @@ class CreatePassword extends Component {
 
 
 const mapStateToProps = state => ({
- ...state
+  ...state
 })
 const mapDispatchToProps = dispatch => ({
  addPassword: (data) => dispatch(addPassword(data)),

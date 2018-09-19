@@ -17,8 +17,9 @@ class AuthPassword extends Component {
   onKeyChange(event){
     this.setState({password: event.target.value});
   }
-  onSubmit(){
+  onSubmit(e){
     let self = this;
+    e.preventDefault();
     for (var i = 0; i < this.props.wallets.length; i++) {
       if (cryptoJSON.decrypt(this.props.wallets[i], this.state.password)) {
         let decryptedWallet = cryptoJSON.decrypt(this.props.wallets[i], this.state.password);
