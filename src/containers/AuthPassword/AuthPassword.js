@@ -31,7 +31,7 @@ class AuthPassword extends Component {
         this.props.updateWallet(decryptedWallet);
       }
     }
-    self.props.history.push('/main');
+    self.props.history.push('/main/wallets');
   }
   render() {
     return (

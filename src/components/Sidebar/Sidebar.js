@@ -16,7 +16,7 @@ class Sidebar extends Component {
         <div className="flex column navWrapper">
           <ul>
             <li>
-              <Link to="/main" className={this.props.location === "/main" ? "active" : null}>Wallets</Link>
+              <Link to="/main/wallets" className={this.props.location === "/main/wallets" ? "active" : null}>Wallets</Link>
             </li>
             <li>
               <Link to="/main/settings" className={this.props.location === "/main/settings" ? "active" : null}>Settings</Link>

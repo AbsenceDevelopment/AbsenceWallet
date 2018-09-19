@@ -11,6 +11,7 @@
     "crypto-json": "^2.0.2",
     "electron-is-dev": "^0.3.0",
     "ethers": "^3.0.27",
+    "moment": "^2.22.2",
     "nedb": "^1.8.0",
     "qrcode": "^1.2.2",
     "react": "^16.5.1",
