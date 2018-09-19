@@ -14,6 +14,7 @@ class ImportKey extends Component {
 
     this.onKeyChange = this.onKeyChange.bind(this);
     this.onNameChange = this.onNameChange.bind(this);
+    this.importKey = this.importKey.bind(this);
   }
   componentWillMount(){
     if (this.props.initialLogin) {
@@ -23,7 +24,7 @@ class ImportKey extends Component {
   importKey(e){
     let self = this;
     e.preventDefault();
-    if (this.state.privateKey && new ethers.Wallet(this.state.privateKey)) {
+    if (self.state.privateKey && new ethers.Wallet(self.state.privateKey)) {
       var wallet = new ethers.Wallet(this.state.privateKey);
       let walletData = {_id: wallet.address, privateKey: this.state.privateKey, walletName: this.state.walletName};
       let walletOutput = cryptoJSON.encrypt(walletData, this.props.password);
@@ -65,7 +66,7 @@ class ImportKey extends Component {
                 <label htmlFor="privateKey">Private Key</label>
                 <input id="privateKey" type="text" placeholder="Your Private Key" onChange={this.onKeyChange}/>
               </div>
-              <button className="btn btnBlue" onClick={this.importKey}>Import Wallet</button>
+              <button className="btn btnBlue" onClick={(e) => this.importKey}>Import Wallet</button>
             </form>
           </div>
         </div>
