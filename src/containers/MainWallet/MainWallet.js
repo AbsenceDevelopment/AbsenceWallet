@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { addWallet, selectWallet } from '../../actions/walletActions';
 import Cart from '../../components/Cart/Cart';
 import Sidebar from '../../components/Sidebar/Sidebar';
-import { walletDb } from '../../localdb.js';
+import TransactionsList from '../../components/TransactionsList/TransactionsList';
 
 import './mainWallet.scss';
+
+var ethers = require('ethers');
+var provider = new ethers.providers.EtherscanProvider();
 
 class MainWallet extends Component {
   constructor(props){
@@ -26,12 +29,15 @@ class MainWallet extends Component {
     return (
       <div className="flex row mainContainerWrap">
         <Sidebar location={this.props.location.pathname}/>
-        <div className="flex column flex-auto last-flex mainContentWrapper">
+        <div className="flex column flexAuto last-flex mainContentWrapper">
           <div className="flex column cardsListWrapper">
             <h1>My Wallets</h1>
             <div className="flex row cardsList">
               {wallets}
             </div>
+          </div>
+          <div className="flex column transactionsListWrapper">
+            {this.props.selectedWallet ? (<TransactionsList/>) : null}
           </div>
         </div>
       </div>
