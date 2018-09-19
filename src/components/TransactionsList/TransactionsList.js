@@ -35,26 +35,39 @@ class TransactionsList extends Component {
     let transactions = this.state.transactions.map(transaction => (
       <Transaction transaction={transaction} transactionAction={transaction.from === this.props.selectedWallet ? "Sent" : "Received"}/>
     ));
-    return (
-      <div className="flex column">
-        <h1>Recent Transactions</h1>
-        <div className="flex row transactionhead">
-          <div className="flex column flex-grid-2">
-            <p>Action</p>
+    if (this.state.transactions.length > 0) {
+      return (
+        <div className="flex column">
+          <h1>Recent Transactions</h1>
+          <div className="flex row transactionhead">
+            <div className="flex column flex-grid-2">
+              <p>Action</p>
+            </div>
+            <div className="flex column flex-grid-4">
+              <p>Exact Amount</p>
+            </div>
+            <div className="flex column flex-grid-3">
+              <p>Current Converion</p>
+            </div>
+            <div className="flex column flex-grid-3 last-flex">
+              <p>Date</p>
+            </div>
           </div>
-          <div className="flex column flex-grid-4">
-            <p>Exact Amount</p>
-          </div>
-          <div className="flex column flex-grid-3">
-            <p>Current Converion</p>
-          </div>
-          <div className="flex column flex-grid-3 last-flex">
-            <p>Date</p>
+          {transactions}
+        </div>
+      );
+    }else{
+      return (
+        <div className="flex column">
+          <h1>Recent Transactions</h1>
+          <div className="flex row transactionRow">
+            <div className="flex column flex-grid-12">
+              <p>No transactions at the Moment</p>
+            </div>
           </div>
         </div>
-        {transactions}
-      </div>
-    );
+      )
+    }
   }
 }
 

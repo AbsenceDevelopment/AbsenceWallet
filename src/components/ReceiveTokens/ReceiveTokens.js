@@ -22,6 +22,16 @@ class ReceiveTokens extends Component {
       });
     }
   }
+  componentWillReceiveProps(nextProps){
+    if (this.props.wallet.length > 0) {
+      var canvas = document.getElementById('walletQR')
+
+      QRCode.toCanvas(canvas, nextProps.wallet, function (error) {
+        if (error) console.error(error)
+        console.log('success!');
+      });
+    }
+  }
   render() {
     return (
       <div className="flex column flex-grid-6 receiveWrapper">
