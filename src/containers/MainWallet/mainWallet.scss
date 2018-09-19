@@ -1,6 +1,9 @@
 .mainContainerWrap{
-  min-height: min-content;
   height: 100%;
+  .mainContent{
+    min-height: min-content;
+    min-height: -moz-min-content;
+  }
   h1{
     font-size: 24px;
     font-weight: 300;
@@ -10,6 +13,32 @@
     margin: 50px 30px;
   }
   .transactionsListWrapper{
-    margin: 0px 30px 50px 30px;    
+    margin: 0px 30px 50px 30px;
   }
+  .actionsRow{
+    margin: 0px 30px 50px 30px;
+    .receiveWrapper{
+      justify-content: center;
+      .whiteBox{
+        align-items: center;
+        text-align: center;
+        padding: 30px 0px;
+        h3{
+          font-size: 14px;
+          font-weight: 700;
+        }
+        p{
+          font-size: 14px;
+          font-size: 500;
+          margin: 5px 0px 20px 0px;
+        }
+        .btn{
+          border: none;
+        }
+      }
+    }
+  }
+}
+.mainContentWrapper{
+  overflow: auto;
 }

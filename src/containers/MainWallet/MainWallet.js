@@ -4,11 +4,9 @@ import { addWallet, selectWallet } from '../../actions/walletActions';
 import Cart from '../../components/Cart/Cart';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import TransactionsList from '../../components/TransactionsList/TransactionsList';
+import ReceiveTokens from '../../components/ReceiveTokens/ReceiveTokens';
 
 import './mainWallet.scss';
-
-var ethers = require('ethers');
-var provider = new ethers.providers.EtherscanProvider();
 
 class MainWallet extends Component {
   constructor(props){
@@ -24,7 +22,6 @@ class MainWallet extends Component {
       this.props.selectWallet(this.props.wallets[this.props.wallets.length - 1].id);
     }
   }
-
   render() {
     let wallets = this.props.wallets.map((wallet, i) =>
       <Cart wallet={wallet} key={i} selectedWallet={wallet.id === this.props.selectedWallet ? true : false} onClick={this.props.selectWallet}/>
@@ -33,14 +30,19 @@ class MainWallet extends Component {
       <div className="flex row mainContainerWrap">
         <Sidebar location={this.props.location.pathname}/>
         <div className="flex column flexAuto last-flex mainContentWrapper">
-          <div className="flex column cardsListWrapper">
-            <h1>My Wallets</h1>
-            <div className="flex row cardsList">
-              {wallets}
+          <div className="flex column flexAuto mainContent">
+            <div className="flex column cardsListWrapper">
+              <h1>My Wallets</h1>
+              <div className="flex row cardsList">
+                {wallets}
+              </div>
             </div>
-          </div>
-          <div className="flex column transactionsListWrapper">
-            {this.props.selectedWallet ? (<TransactionsList/>) : null}
+            <div className="flex row actionsRow">
+              <ReceiveTokens wallet={this.props.selectedWallet} />
+            </div>
+            <div className="flex column transactionsListWrapper">
+              {this.props.selectedWallet ? (<TransactionsList/>) : null}
+            </div>
           </div>
         </div>
       </div>
@@ -56,4 +58,3 @@ const mapDispatchToProps = dispatch => ({
  addWallet: (data) => dispatch(addWallet(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(MainWallet);
-// AFEEBCFE8D8AF79D8EA3559941898495D9B77F359FF5AE10286F829550AF8316

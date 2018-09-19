@@ -18,7 +18,7 @@ body {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   color: $brandBlack;
   background-color: $brandGrey;
   font-family: 'Open Sans', sans-serif;
@@ -226,4 +226,10 @@ p{
   height: -moz-min-content;
   min-height: min-content;
   min-height: -moz-min-content;
+}
+
+.whiteBox{
+  background: #FFFFFF;
+  border: 1px solid #F3F3F3;
+  border-radius: 5px;
 }
