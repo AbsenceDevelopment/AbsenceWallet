@@ -7,6 +7,7 @@ import {
 import { selectWallet } from '../../actions/walletActions';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Wallets from '../Wallets/Wallets';
+import Donate from '../Donate/Donate';
 
 import './mainWallet.scss';
 
@@ -32,6 +33,7 @@ class MainWallet extends Component {
         <div className="flex column flexAuto last-flex mainContentWrapper">
         <Switch>
           <Route path="/main/wallets" component={Wallets}/>
+          <Route path="/main/donate" component={Donate}/>
         </Switch>
         </div>
       </div>
