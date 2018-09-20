@@ -19,6 +19,13 @@ class Transaction extends Component {
     let date = moment(this.props.transaction.timestamp*1000);
     var month = date.format('MMMM');
     var day   = date.format('D');
+    var dateYear = date.format('YYYY')
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var year = "";
+    if(dateYear != todayYear) {
+      year = dateYear;
+    }
     return (
       <div className="flex row transactionRow">
         <div className="flex column flex-grid-2">
@@ -31,7 +38,7 @@ class Transaction extends Component {
           <p>{Number((this.props.transaction.value*priceUSD)).toFixed(2)} USD</p>
         </div>
         <div className="flex column flex-grid-3 last-flex">
-          <p>{month} {day}</p>
+          <p>{month} {day} {year}</p>
         </div>
       </div>
     );
