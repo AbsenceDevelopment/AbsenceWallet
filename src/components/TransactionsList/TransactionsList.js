@@ -33,7 +33,7 @@ class TransactionsList extends Component {
   }
   render() {
     let transactions = this.state.transactions.map(transaction => (
-      <Transaction transaction={transaction} transactionAction={transaction.from === this.props.selectedWallet ? "Sent" : "Received"}/>
+      <Transaction transaction={transaction} key={transaction.hash} transactionAction={transaction.from === this.props.selectedWallet ? "Sent" : "Received"}/>
     ));
     if (this.state.transactions.length > 0) {
       return (

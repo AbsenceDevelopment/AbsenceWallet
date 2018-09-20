@@ -18,17 +18,15 @@ class ReceiveTokens extends Component {
 
       QRCode.toCanvas(canvas, this.props.wallet, function (error) {
         if (error) console.error(error)
-        console.log('success!');
       });
     }
   }
   componentWillReceiveProps(nextProps){
-    if (this.props.wallet.length > 0) {
+    if (nextProps.wallet.length > 0) {
       var canvas = document.getElementById('walletQR')
 
       QRCode.toCanvas(canvas, nextProps.wallet, function (error) {
         if (error) console.error(error)
-        console.log('success!');
       });
     }
   }

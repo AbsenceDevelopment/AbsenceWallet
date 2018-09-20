@@ -18,8 +18,8 @@
   .actionsRow{
     margin: 0px 30px 50px 30px;
     .receiveWrapper{
-      justify-content: center;
       .whiteBox{
+        max-height: max-content;
         align-items: center;
         text-align: center;
         padding: 30px 0px;
@@ -35,6 +35,15 @@
         .btn{
           border: none;
         }
+      }
+    }
+  }
+  .sendTokens{
+    .whiteBox{
+      padding: 30px;
+      .btn{
+        border: none;
+        align-self: flex-end;
       }
     }
   }
