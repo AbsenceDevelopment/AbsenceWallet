@@ -39,7 +39,7 @@ class Cart extends Component {
         </div>
         <div className="flex row cardConvertionWrapper">
           <div className="flex flex-grid-6">
-            <p>USD</p>
+            <p>{this.props.currency}</p>
           </div>
           <div className="flex flex-grid-6 last-flex">
             <h2>{Number(this.state.balance * this.props.rate).toFixed(5)}</h2>

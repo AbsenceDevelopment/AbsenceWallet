@@ -30,7 +30,7 @@ class Transaction extends Component {
           <p>{Number(ethers.utils.formatEther(this.props.transaction.value)).toFixed(7)} ETH</p>
         </div>
         <div className="flex column flex-grid-3">
-          <p>{Number(ethers.utils.formatEther(this.props.transaction.value) * this.props.transactionValue).toFixed(5)} USD</p>
+          <p>{Number(ethers.utils.formatEther(this.props.transaction.value) * this.props.transactionValue).toFixed(5)} {this.props.currency}</p>
         </div>
         <div className="flex column flex-grid-3 last-flex">
           <p>{month} {day} {year}</p>

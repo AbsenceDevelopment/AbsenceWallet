@@ -23,7 +23,7 @@ class TransactionsList extends Component {
     });
   }
   componentWillReceiveProps(nextProps){
-    if (this.props.selectedWallet.length > 0) {
+    if (this.props.selectedWallet !== nextProps.selectedWallet && nextProps.selectedWallet.length > 0) {
       this.setState({transactions: []});
       this.getTransactions(nextProps.selectedWallet);
     }
@@ -35,7 +35,7 @@ class TransactionsList extends Component {
   }
   render() {
     let transactions = this.state.transactions.map(transaction => (
-      <Transaction transaction={transaction} transactionValue={this.props.ethereumPrice} key={transaction.hash} transactionAction={transaction.from === this.props.selectedWallet ? "Sent" : "Received"}/>
+      <Transaction transaction={transaction} currency={this.props.selectedCurrency} transactionValue={this.props.ethereumPrice} key={transaction.hash} transactionAction={transaction.from === this.props.selectedWallet ? "Sent" : "Received"}/>
     ));
     if (this.state.loading) {
       return (

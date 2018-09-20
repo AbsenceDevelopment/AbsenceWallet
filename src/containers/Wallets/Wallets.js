@@ -20,22 +20,25 @@ class Wallets extends Component {
     window.setInterval(function(){
       self.ticker();
     }, 5000);
-
   }
   ticker(){
     let self = this;
-    fetch('https://api.coinmarketcap.com/v2/ticker/1027/')
+    let url = self.props.selectedCurrency !== "USD" ? 'https://api.coinmarketcap.com/v2/ticker/1027/?convert='+self.props.selectedCurrency : 'https://api.coinmarketcap.com/v2/ticker/1027/';
+    fetch(url)
     .then((response) => response.json())
     .then((responseJson) => {
-      self.props.ethPrice(responseJson.data.quotes.USD.price);
+      self.props.ethPrice(responseJson.data.quotes[self.props.selectedCurrency]["price"]);
     })
     .catch((error) =>{
       console.error(error);
     });
   }
+  componentWillReceiveProps(nextProps){
+    this.ticker();
+  }
   render() {
     let wallets = this.props.wallets.map((wallet, i) =>
-      <Cart wallet={wallet} key={i} rate={this.props.ethereumPrice} selectedWallet={wallet.id === this.props.selectedWallet ? true : false} onClick={this.props.selectWallet}/>
+      <Cart wallet={wallet} key={i} rate={this.props.ethereumPrice} currency={this.props.selectedCurrency} selectedWallet={wallet.id === this.props.selectedWallet ? true : false} onClick={this.props.selectWallet}/>
     );
     let selectedWallet = this.props.wallets.filter(obj => {
       return obj.id === this.props.selectedWallet

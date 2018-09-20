@@ -9,6 +9,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import Wallets from '../Wallets/Wallets';
 import Donate from '../Donate/Donate';
 import Settings from '../Settings/Settings';
+import { selectCurrency } from '../../actions/appStateActions';
 
 import './mainWallet.scss';
 
@@ -25,7 +26,9 @@ class MainWallet extends Component {
     else if (this.props.selectedWallet.length === 0) {
       this.props.selectWallet(this.props.wallets[this.props.wallets.length - 1].id);
     }
-    console.log(this.props.history);
+    if (this.props.selectedCurrency && this.props.selectedCurrency.length === 0) {
+      this.props.selectCurrency("USD");
+    }
   }
   render() {
     return (
@@ -47,6 +50,7 @@ const mapStateToProps = state => ({
   ...state
 })
 const mapDispatchToProps = dispatch => ({
- selectWallet: (data) => dispatch(selectWallet(data))
+ selectWallet: (data) => dispatch(selectWallet(data)),
+ selectCurrency: (data) => dispatch(selectCurrency(data))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(MainWallet);
