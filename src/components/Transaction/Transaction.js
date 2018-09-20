@@ -3,6 +3,11 @@ import './transaction.scss';
 import moment from 'moment';
 
 var ethers = require('ethers');
+var provider = new ethers.providers.EtherscanProvider();
+var priceUSD = 0;
+provider.getEtherPrice().then(function(price) {
+  priceUSD = (price / Math.pow(10, 18));
+});
 
 class Transaction extends Component {
   constructor(props){
@@ -23,7 +28,7 @@ class Transaction extends Component {
           <p>{Number(ethers.utils.formatEther(this.props.transaction.value)).toFixed(7)} ETH</p>
         </div>
         <div className="flex column flex-grid-3">
-          <p>{Number(ethers.utils.formatEther(this.props.transaction.value)).toFixed(7)} ETH</p>
+          <p>{Number((this.props.transaction.value*priceUSD)).toFixed(2)} USD</p>
         </div>
         <div className="flex column flex-grid-3 last-flex">
           <p>{month} {day}</p>
