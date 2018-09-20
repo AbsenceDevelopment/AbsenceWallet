@@ -45,10 +45,24 @@
       align-items: flex-end;
       p{
         font-weight: 700;
-        font-size: 18px;
+        font-size: 14px;
       }
       h2{
-        font-size: 32px;
+        font-size: 24px;
+        font-weight: 300;
+      }
+      .last-flex{
+        justify-content: flex-end;
+      }
+    }
+    .cardConvertionWrapper{
+      align-items: flex-end;
+      p{
+        font-weight: 700;
+        font-size: 14px;
+      }
+      h2{
+        font-size: 24px;
         font-weight: 300;
       }
       .last-flex{

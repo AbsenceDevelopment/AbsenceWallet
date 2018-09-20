@@ -37,6 +37,14 @@ class Cart extends Component {
             <h2>{Number(this.state.balance).toFixed(7)}</h2>
           </div>
         </div>
+        <div className="flex row cardConvertionWrapper">
+          <div className="flex flex-grid-6">
+            <p>USD</p>
+          </div>
+          <div className="flex flex-grid-6 last-flex">
+            <h2>{Number(this.state.balance * this.props.rate).toFixed(5)}</h2>
+          </div>
+        </div>
       </div>
     );
   }
