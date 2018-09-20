@@ -16,7 +16,7 @@ class Transaction extends Component {
   }
 
   render() {
-    let date = moment(this.props.transaction.timestamp);
+    let date = moment(this.props.transaction.timestamp*1000);
     var month = date.format('MMMM');
     var day   = date.format('D');
     return (
