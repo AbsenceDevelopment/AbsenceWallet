@@ -1,0 +1,88 @@
+.topbar{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 8px;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  justify-content: flex-end;
+  &.macTop{
+    justify-content: flex-start;
+  }
+  .closeBtn{
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    background-color: #FF6158;
+    margin-right: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #E04640;
+    &:hover{
+      &:after{
+        background-color: rgba(0, 0, 0, .5);
+      }
+    }
+    &:after{
+      content: '';
+      height: 4px;
+      width: 4px;
+      border-radius: 5px;
+      align-self: center;
+      background-color: transparent;
+      display: flex;
+      position: relative;
+    }
+  }
+  .minBtn{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #FFBE30;
+    margin-right: 5px;
+    border: 1px solid #E0A123;
+    display: flex;
+    justify-content: center;
+    &:hover{
+      &:after{
+        background-color: rgba(0, 0, 0, .5);
+      }
+    }
+    &:after{
+      content: '';
+      height: 4px;
+      width: 4px;
+      border-radius: 5px;
+      align-self: center;
+      background-color: transparent;
+      display: flex;
+      position: relative;
+    }
+  }
+  .maxBtn{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #2ACE41;
+    border: 1px solid #18AC2B;
+    display: flex;
+    justify-content: center;
+    &:hover{
+      &:after{
+        background-color: rgba(0, 0, 0, .5);
+      }
+    }
+    &:after{
+      content: '';
+      height: 4px;
+      width: 4px;
+      border-radius: 5px;
+      align-self: center;
+      background-color: transparent;
+      display: flex;
+      position: relative;
+    }
+  }
+}

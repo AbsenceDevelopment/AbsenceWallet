@@ -12,6 +12,7 @@ import Landing from '../Landing/Landing';
 import CreateWallet from '../CreateWallet/CreateWallet';
 import CreatePassword from '../CreatePassword/CreatePassword';
 import AuthPassword from '../AuthPassword/AuthPassword';
+import Topbar from '../../components/Topbar/Topbar';
 
 import './app.scss';
 
@@ -21,6 +22,7 @@ class App extends Component {
     return(
       <Router>
         <div className="containerFluid flex column appWrapper">
+          <Topbar/>
           <Switch>
             <Route path="/createWallet" component={CreateWallet}/>
             <Route path="/importKey" component={ImportKey}/>

@@ -10,6 +10,7 @@
     "cross-env": "^5.2.0",
     "crypto-json": "^2.0.2",
     "electron-is-dev": "^0.3.0",
+    "electron-util": "^0.9.1",
     "ethers": "^3.0.27",
     "moment": "^2.22.2",
     "nedb": "^1.8.0",
