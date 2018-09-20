@@ -28,7 +28,7 @@ class ImportMnemonic extends Component {
         if (err) {
         }else{
           self.props.addWallet(walletData);
-          self.props.history.push('/main');
+          self.props.history.push('/main/wallets');
         }
       });
     }

@@ -10,14 +10,16 @@ class TransactionsList extends Component {
   constructor(props){
     super(props);
     this.state = {
-      transactions: []
+      transactions: [],
+      loading: true
     }
     this.getTransactions = this.getTransactions.bind(this);
   }
   getTransactions(wallet){
     let self = this;
+    this.setState({loading: true});
     provider.getHistory(wallet).then(function(history) {
-      self.setState({transactions: history})
+      self.setState({loading: false, transactions: history})
     });
   }
   componentWillReceiveProps(nextProps){
@@ -35,38 +37,51 @@ class TransactionsList extends Component {
     let transactions = this.state.transactions.map(transaction => (
       <Transaction transaction={transaction} key={transaction.hash} transactionAction={transaction.from === this.props.selectedWallet ? "Sent" : "Received"}/>
     ));
-    if (this.state.transactions.length > 0) {
-      return (
-        <div className="flex column">
-          <h1>Recent Transactions</h1>
-          <div className="flex row transactionhead">
-            <div className="flex column flex-grid-2">
-              <p>Action</p>
-            </div>
-            <div className="flex column flex-grid-4">
-              <p>Exact Amount</p>
-            </div>
-            <div className="flex column flex-grid-3">
-              <p>Current Converion</p>
-            </div>
-            <div className="flex column flex-grid-3 last-flex">
-              <p>Date</p>
-            </div>
-          </div>
-          {transactions}
-        </div>
-      );
-    }else{
+    if (this.state.loading) {
       return (
         <div className="flex column">
           <h1>Recent Transactions</h1>
           <div className="flex row transactionRow">
             <div className="flex column flex-grid-12">
-              <p>No transactions at the Moment</p>
+              <p>Loading...</p>
             </div>
           </div>
         </div>
       )
+    }else{
+      if (this.state.transactions.length > 0) {
+        return (
+          <div className="flex column">
+            <h1>Recent Transactions</h1>
+            <div className="flex row transactionhead">
+              <div className="flex column flex-grid-2">
+                <p>Action</p>
+              </div>
+              <div className="flex column flex-grid-4">
+                <p>Exact Amount</p>
+              </div>
+              <div className="flex column flex-grid-3">
+                <p>Current Converion</p>
+              </div>
+              <div className="flex column flex-grid-3 last-flex">
+                <p>Date</p>
+              </div>
+            </div>
+            {transactions}
+          </div>
+        );
+      }else{
+        return (
+          <div className="flex column">
+            <h1>Recent Transactions</h1>
+            <div className="flex row transactionRow">
+              <div className="flex column flex-grid-12">
+                <p>No transactions at the Moment</p>
+              </div>
+            </div>
+          </div>
+        )
+      }
     }
   }
 }

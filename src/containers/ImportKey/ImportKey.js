@@ -33,7 +33,7 @@ class ImportKey extends Component {
           console.log(err);
         }else{
           self.props.addWallet(walletData);
-          self.props.history.push('/main');
+          self.props.history.push('/main/wallets');
         }
       });
     }else{
