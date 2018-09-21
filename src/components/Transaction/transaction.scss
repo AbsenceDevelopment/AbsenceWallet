@@ -1,3 +1,5 @@
+@import '../../assets/styles/var.scss';
+
 .transactionRow{
   background-color: white;
   padding: 20px 30px;
@@ -8,6 +10,38 @@
   p{
     margin: 0px;
     font-size: 16px;
+  }
+  &.sent{
+    overflow: hidden;
+    position: relative;
+    .flex-grid-2{
+      color: $brandPink;
+    }
+    &:before{
+      content: '';
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 5px;
+      background-color: $brandPink;
+    }
+  }
+  &.received{
+    overflow: hidden;
+    position: relative;
+    .flex-grid-2{
+      color: #7DD606;
+    }
+    &:before{
+      content: '';
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      width: 5px;
+      background-color: #7DD606;
+    }
   }
 }
 .transactionhead{

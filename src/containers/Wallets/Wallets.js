@@ -43,7 +43,7 @@ class Wallets extends Component {
     clearInterval(this.tickerInterval);
   }
   onMouseDown(e){
-    this.setState({isDown: true, startX: e.pageX, scrollLeft: this.sliderRef.current.scrollLeft });
+    this.setState({isDown: true, startX: e.pageX - 30, scrollLeft: this.sliderRef.current.scrollLeft });
   }
   onMouseUp(){
     this.setState({isDown: false, startX: null});

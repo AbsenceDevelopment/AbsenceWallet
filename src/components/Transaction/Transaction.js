@@ -22,7 +22,7 @@ class Transaction extends Component {
       year = dateYear;
     }
     return (
-      <div className="flex row transactionRow">
+      <div className={"flex row transactionRow " + this.props.transactionAction.toLowerCase()}>
         <div className="flex column flex-grid-2">
           <p>{this.props.transactionAction}</p>
         </div>
