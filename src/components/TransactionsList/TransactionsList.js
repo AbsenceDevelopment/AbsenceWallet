@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Transaction from '../../components/Transaction/Transaction';
+import moment from 'moment';
 
 var ethers = require('ethers');
 var provider = new ethers.providers.EtherscanProvider();
@@ -34,7 +35,11 @@ class TransactionsList extends Component {
     }
   }
   render() {
-    let transactions = this.state.transactions.map(transaction => (
+    let transactions = [].concat(this.state.transactions)
+      .sort(function(a,b){
+        return new Date(b.timestamp) - new Date(a.timestamp);
+      })
+      .map(transaction => (
       <Transaction transaction={transaction} currency={this.props.selectedCurrency} transactionValue={this.props.ethereumPrice} key={transaction.hash} transactionAction={transaction.from === this.props.selectedWallet ? "Sent" : "Received"}/>
     ));
     if (this.state.loading) {

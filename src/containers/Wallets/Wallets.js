@@ -49,7 +49,7 @@ class Wallets extends Component {
         </div>
         <div className="flex row actionsRow">
           <ReceiveTokens wallet={this.props.selectedWallet} />
-          <SendTokens wallet={selectedWallet[0]['privateKey']} />
+          {this.props.wallets.length > 0 ? (<SendTokens wallet={selectedWallet[0]['privateKey']} />) : null}
         </div>
         <div className="flex column transactionsListWrapper">
           {this.props.selectedWallet ? (<TransactionsList/>) : null}
