@@ -14,12 +14,15 @@ class TransactionsList extends Component {
       loading: true
     }
     this.getTransactions = this.getTransactions.bind(this);
+    this.mounted = false;
   }
   getTransactions(wallet){
     let self = this;
     this.setState({loading: true});
     provider.getHistory(wallet).then(function(history) {
-      self.setState({loading: false, transactions: history})
+      if (self.mounted) {
+        self.setState({loading: false, transactions: history})
+      }
     });
   }
   componentWillReceiveProps(nextProps){
@@ -29,9 +32,13 @@ class TransactionsList extends Component {
     }
   }
   componentWillMount(){
+    this.mounted = true;
     if (this.props.selectedWallet.length > 0) {
       this.getTransactions(this.props.selectedWallet);
     }
+  }
+  componentWillUnmount(){
+    this.mounted = false;
   }
   render() {
     let transactions = [].concat(this.state.transactions)

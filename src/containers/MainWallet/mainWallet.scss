@@ -10,7 +10,9 @@
     margin-bottom: 30px;
   }
   .cardsListWrapper{
-    margin: 50px 30px;
+    h1{
+      margin: 50px 30px 50px 30px;
+    }
   }
   .transactionsListWrapper{
     margin: 0px 30px 50px 30px;
@@ -38,6 +40,17 @@
       }
     }
   }
+  .cardsList{
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 0;
+      display: none;
+    }
+    &.active{
+      cursor: grabbing;
+      cursor: -webkit-grabbing;
+    }
+  }
   .sendTokens{
     .whiteBox{
       padding: 30px;
@@ -49,5 +62,26 @@
   }
 }
 .mainContentWrapper{
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    display: block;
+    overflow: hidden;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.2);
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.5);
+    border-radius: 100px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,.8);
+  }
 }

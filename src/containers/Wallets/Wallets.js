@@ -11,7 +11,18 @@ class Wallets extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      isDown: false,
+      startX: null,
+      scrollLeft: null,
+      x: null
+    }
+    this.sliderRef = React.createRef();
     this.ticker = this.ticker.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.onMouseUp = this.onMouseUp.bind(this);
+    this.onMouseDown = this.onMouseDown.bind(this);
   }
   ticker(){
     let self = this;
@@ -31,6 +42,21 @@ class Wallets extends Component {
   componentWillUnmount(){
     clearInterval(this.tickerInterval);
   }
+  onMouseDown(e){
+    this.setState({isDown: true, startX: e.pageX, scrollLeft: this.sliderRef.current.scrollLeft });
+  }
+  onMouseUp(){
+    this.setState({isDown: false, startX: null});
+  }
+  onMouseLeave(){
+    this.setState({isDown: false});
+  }
+  onMouseMove(e){
+    if(!this.state.isDown) return;
+    e.preventDefault();
+    this.sliderRef.current.scrollLeft = this.state.scrollLeft - (e.pageX - this.state.startX);
+  }
+
   render() {
     let wallets = this.props.wallets.map((wallet, i) =>
       <Cart wallet={wallet} key={i} rate={this.props.ethereumPrice} currency={this.props.selectedCurrency} selectedWallet={wallet.id === this.props.selectedWallet ? true : false} onClick={this.props.selectWallet}/>
@@ -42,7 +68,7 @@ class Wallets extends Component {
       <div className="flex column flexAuto mainContent">
         <div className="flex column cardsListWrapper">
           <h1>My Wallets</h1>
-          <div className="flex row cardsList">
+          <div className={this.state.isDown ? "flex row cardsList active" : "flex row cardsList"} ref={this.sliderRef} onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} onMouseLeave={this.onMouseLeave} onMouseUp={this.onMouseUp}>
             {wallets}
           </div>
         </div>
