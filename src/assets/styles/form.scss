@@ -1,5 +1,10 @@
 .formWrap{
   padding-bottom: 40px;
+  .formHead{
+    .error{
+      color: $brandPink;
+    }
+  }
   h2{
     padding-top: 30px;
     font-size: 18px;
@@ -30,6 +35,16 @@ label{
 }
 .inputWrap{
   margin-bottom: 20px;
+  &.error{
+    label{
+      color: $brandPink;
+      font-weight: 700;
+    }
+    input{
+      border-color: $brandPink;
+      color: $brandPink;
+    }
+  }
 }
 
 .walletSelector{
