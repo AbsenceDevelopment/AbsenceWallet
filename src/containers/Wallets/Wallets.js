@@ -10,16 +10,9 @@ import SendTokens from '../../components/SendTokens/SendTokens';
 class Wallets extends Component {
   constructor(props){
     super(props);
-    this.state = {}
-
-    this.ticker = this.ticker.bind(this);
-  }
-  componentWillMount(){
     let self = this;
-    self.ticker();
-    window.setInterval(function(){
-      self.ticker();
-    }, 5000);
+    this.ticker = this.ticker.bind(this);
+    this.tickerInterval;
   }
   ticker(){
     let self = this;
@@ -33,8 +26,11 @@ class Wallets extends Component {
       console.error(error);
     });
   }
-  componentWillReceiveProps(nextProps){
-    this.ticker();
+  componentDidMount(){
+    this.tickerInterval = setInterval(() => this.ticker(), 5000);
+  }
+  componentWillUnmount(){
+    clearInterval(this.tickerInterval);
   }
   render() {
     let wallets = this.props.wallets.map((wallet, i) =>
