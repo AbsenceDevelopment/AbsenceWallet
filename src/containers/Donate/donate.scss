@@ -14,46 +14,6 @@
   .inputWrap{
     width: 100%;
   }
-  .walletSelector{
-    position: relative;
-    .selectedWallet{
-      padding: 10px;
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    ul{
-      position: absolute;
-      margin: 0px;
-      top: 94%;
-      width: 100%;
-      padding: 0px;
-      list-style: none;
-      li{
-        padding: 10px;
-        background-color: white;
-        border-top: 1px solid #e0e0e0;
-        border-right: 1px solid #e0e0e0;
-        border-left: 1px solid #e0e0e0;
-        &:hover{
-          background-color: #f3f3f3;
-          cursor: pointer;
-        }
-        &:last-child{
-          border-bottom: 1px solid #e0e0e0;
-          border-radius: 0px 0px 5px 5px;
-        }
-      }
-    }
-    p{
-      margin: 0px;
-      font-size: 16px;
-      small{
-        font-size: 12px;
-        color: rgba(0,0,0,.5);
-      }
-    }
-  }
 }
 
 .availableBalanceWrap{

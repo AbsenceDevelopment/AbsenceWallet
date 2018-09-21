@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateWallet, selectWallet } from '../../actions/walletActions';
 import { addPassword } from '../../actions/passwordActions';
-
-const cryptoJSON = require('crypto-json')
+import cryptoJSON from '../../lib/crypto-json';
 
 class AuthPassword extends Component {
   constructor(props){

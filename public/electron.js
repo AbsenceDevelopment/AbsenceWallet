@@ -6,9 +6,11 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 
 let mainWindow;
+app.setName("Absence Wallet");
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 1440, height: 1024, frame: false });
+  app.setName("Absence Wallet");
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"

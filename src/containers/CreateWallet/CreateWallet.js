@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { addWallet } from '../../actions/walletActions';
 import bip39 from 'bip39';
 import { walletDb } from '../../localdb.js';
+import cryptoJSON from '../../lib/crypto-json';
 
 var ethers = require('ethers');
-const cryptoJSON = require('crypto-json');
 
 class CreateWallet extends Component {
   constructor(props){

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectWallet } from '../../actions/walletActions';
+
+import WalletSelector from '../../components/WalletSelector/WalletSelector';
+
 import './donate.scss';
 
 const ethers = require('ethers');
@@ -15,7 +18,6 @@ class Donate extends Component {
 
     this.state = {
       selectedWallet: selectedWallet[0]['privateKey'],
-      selectorOn: false,
       balance: 'Loading...',
       amount: ''
     }
@@ -24,7 +26,6 @@ class Donate extends Component {
     this.wallet.provider = ethers.providers.getDefaultProvider({ name: 'ropsten', chainId: 3 });
     this.onKeyChange = this.onKeyChange.bind(this);
     this.donate = this.donate.bind(this);
-    this.toggleSelector = this.toggleSelector.bind(this);
     this.onDonateAll = this.onDonateAll.bind(this);
     this.selectWallet = this.selectWallet.bind(this);
     this.getBalance = this.getBalance.bind(this);
@@ -44,18 +45,13 @@ class Donate extends Component {
   onKeyChange(event){
     this.setState({amount: event.target.value});
   }
-  toggleSelector(){
-    this.setState({selectorOn: !this.state.selectorOn});
-  }
   selectWallet(wallet){
-    let self = this;
     this.setState({selectedWallet: wallet, selectorOn: false});
     this.wallet = new ethers.Wallet(wallet);
     this.wallet.provider = ethers.providers.getDefaultProvider({ name: 'ropsten', chainId: 3 });
     this.getBalance();
   }
   getBalance(){
-    let self = this;
     this.wallet.getBalance()
     .then((data) => {
       this.setState({
@@ -71,33 +67,11 @@ class Donate extends Component {
   }
   render() {
     let balance = this.state.balance;
-    let selectedWallet = this.props.wallets.map(wallet =>
-      wallet.privateKey === this.state.selectedWallet ?
-      (<div className="selectedWallet flex column flex-frid-12" key={wallet.id} onClick={this.toggleSelector}>
-        <p>{wallet.walletName ? wallet.walletName : "A Wallet" }</p>
-        <p><small>{wallet.id}</small></p>
-      </div>) : null);
-    let walletsList = this.props.wallets.map(wallet =>
-      wallet.privateKey !== this.state.selectedWallet ?
-      (<li className="walletListItem" key={wallet.id} onClick={(e) => this.selectWallet(wallet.privateKey)}>
-        <p>{wallet.walletName ? wallet.walletName : "A Wallet" }</p>
-        <p><small>{wallet.id}</small></p>
-      </li>) : null);
     return (
       <div className="flex column flexAuto mainContent justifyCenter">
         <div className="flex column justifyCenter flex-grid-6 donateFormWrapper whiteBox">
           <h1>Would you consider Donating?</h1>
-          <div className="flex column inputWrap">
-            <label>Donate From</label>
-            <div className="walletSelector flex column flexAuto">
-              {selectedWallet}
-              {this.state.selectorOn ?
-                (<ul className="flex column">
-                  {walletsList}
-                </ul>)
-              : null}
-            </div>
-          </div>
+          <WalletSelector selectedWallet={this.state.selectedWallet} onClick={this.selectWallet} wallets={this.props.wallets} label="Donate From"/>
           <div className="inputWrap flex column availableBalanceWrap">
             <label>Amount available</label>
             <div className="row flex flexAuto">

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { addWallet } from '../../actions/walletActions';
 import { walletDb } from '../../localdb.js';
 import bip39 from 'bip39';
+import cryptoJSON from '../../lib/crypto-json';
 
 var ethers = require('ethers');
-const cryptoJSON = require('crypto-json')
 
 class ImportMnemonic extends Component {
   constructor(props){

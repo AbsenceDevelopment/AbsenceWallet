@@ -42,7 +42,6 @@ class SendTokens extends Component {
     this.setState({amount: this.state.balance});
   }
   getBalance(){
-    let self = this;
     this.wallet.getBalance()
     .then((data) => {
       this.setState({

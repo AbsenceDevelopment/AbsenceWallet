@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { updateInitial } from '../../actions/appStateActions';
 import { addPassword } from '../../actions/passwordActions';
 
-const cryptoJSON = require('crypto-json')
-
 class CreatePassword extends Component {
   constructor(props){
     super(props);
@@ -22,7 +20,6 @@ class CreatePassword extends Component {
     this.setState({confirmPassword: event.target.value});
   }
   onSubmit(event){
-    let self = this;
     event.preventDefault()
     if (this.state.password === this.state.confirmPassword) {
       this.props.updateInitial(false);

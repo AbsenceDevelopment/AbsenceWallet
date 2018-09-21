@@ -1,43 +1,86 @@
-.selecterCurrencyWrapper{
-  margin: 40px;
-  .whiteBox{
-    padding: 30px;
-  }
-  .inputWrap{
-    margin-bottom: 0px;
-  }
-  .currencySelector{
-    position: relative;
-    .selectedCurrency{
-      border: 1px solid #e0e0e0;
-      border-radius: 5px;
-      padding: 10px;
-      cursor: pointer;
+.mainContainerWrap{
+  .selecterCurrencyWrapper{
+    margin: 40px;
+    .whiteBox{
+      padding: 30px;
     }
-    p{
-      margin: 0px;
+    .inputWrap{
+      &:last-child{
+        margin-bottom: 0px;
+      }
     }
-    ul{
-      position: absolute;
-      margin: 0px;
-      top: 94%;
-      width: 100%;
-      padding: 0px;
-      list-style: none;
-      li{
+    .currencySelector{
+      position: relative;
+      .selectedCurrency{
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
         padding: 10px;
-        background-color: white;
-        border-top: 1px solid #e0e0e0;
-        border-right: 1px solid #e0e0e0;
-        border-left: 1px solid #e0e0e0;
-        &:hover{
-          background-color: #f3f3f3;
-          cursor: pointer;
+        cursor: pointer;
+        p{
+          margin: 0px;
         }
-        &:last-child{
-          border-bottom: 1px solid #e0e0e0;
-          border-radius: 0px 0px 5px 5px;
+      }
+      .selectedWallet, li{
+        p{
+          margin: 0px;
         }
+      }
+      ul{
+        position: absolute;
+        margin: 0px;
+        top: 94%;
+        width: 100%;
+        padding: 0px;
+        list-style: none;
+        max-height: 250px;
+        overflow: auto;
+        border-radius: 0px 0px 5px 5px;
+        border-bottom: 1px solid #e0e0e0;
+        li{
+          padding: 10px;
+          z-index: 1000;
+          display: block;
+          position: relative;
+          background-color: white;
+          border-top: 1px solid #e0e0e0;
+          border-right: 1px solid #e0e0e0;
+          border-left: 1px solid #e0e0e0;
+          &:hover{
+            background-color: #f3f3f3;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .exportWallet{
+    border-top: 1px solid #e0e0e0;
+    .exportActions{
+      justify-content: flex-end;
+      .btn{
+        margin-left: 10px;
+        border: none;
+      }
+    }
+    .exportCancelActions{
+      justify-content: flex-end;
+      margin-top: 20px;
+      .btn{
+        margin-left: 10px;
+        border: none;
+        &:first-child{
+          margin-left: 0px;
+        }
+      }
+    }
+    .exportWalletHeader{
+      h1{
+        margin-top: 20px;
+        margin-bottom: 0px;
+      }
+      p{
+        margin: 10px 0px 20px 0px;
+        color: rgba(0,0,0,0.5);
       }
     }
   }

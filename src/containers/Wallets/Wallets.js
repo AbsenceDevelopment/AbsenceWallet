@@ -10,9 +10,8 @@ import SendTokens from '../../components/SendTokens/SendTokens';
 class Wallets extends Component {
   constructor(props){
     super(props);
-    let self = this;
+
     this.ticker = this.ticker.bind(this);
-    this.tickerInterval;
   }
   ticker(){
     let self = this;

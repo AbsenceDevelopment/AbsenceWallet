@@ -18,7 +18,7 @@ class Transaction extends Component {
     var today = new Date();
     var todayYear = today.getFullYear();
     var year = "";
-    if(dateYear != todayYear) {
+    if(dateYear !== todayYear) {
       year = dateYear;
     }
     return (

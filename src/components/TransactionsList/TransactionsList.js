@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Transaction from '../../components/Transaction/Transaction';
-import moment from 'moment';
 
 var ethers = require('ethers');
 var provider = new ethers.providers.EtherscanProvider();

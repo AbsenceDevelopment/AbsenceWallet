@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addWallet } from '../../actions/walletActions';
 import { walletDb } from '../../localdb.js';
+import cryptoJSON from '../../lib/crypto-json';
 
-const cryptoJSON = require('crypto-json')
 var ethers = require('ethers');
 
 
