@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './transaction.scss';
 import moment from 'moment';
-
+const { shell } = window.require('electron')
 var ethers = require('ethers');
 
 class Transaction extends Component {
@@ -22,7 +22,7 @@ class Transaction extends Component {
       year = dateYear;
     }
     return (
-      <div className={"flex row transactionRow " + this.props.transactionAction.toLowerCase()}>
+      <div className={"flex row transactionRow " + this.props.transactionAction.toLowerCase()} onClick={() => shell.openExternal('https://etherscan.io/tx/'+this.props.transaction.hash)}>
         <div className="flex column flex-grid-2">
           <p>{this.props.transactionAction}</p>
         </div>

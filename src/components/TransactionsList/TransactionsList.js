@@ -52,7 +52,7 @@ class TransactionsList extends Component {
       return (
         <div className="flex column">
           <h1>Recent Transactions</h1>
-          <div className="flex row transactionRow">
+          <div className="flex row transactionRow emptyRow">
             <div className="flex column flex-grid-12">
               <p>Loading...</p>
             </div>
@@ -85,7 +85,7 @@ class TransactionsList extends Component {
         return (
           <div className="flex column">
             <h1>Recent Transactions</h1>
-            <div className="flex row transactionRow">
+            <div className="flex row transactionRow emptyRow">
               <div className="flex column flex-grid-12">
                 <p>No transactions at the Moment</p>
               </div>
