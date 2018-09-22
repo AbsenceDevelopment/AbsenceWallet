@@ -8,7 +8,7 @@ class SendTokens extends Component {
 
 
     this.wallet = new ethers.Wallet(this.props.wallet);
-    this.wallet.provider = ethers.providers.getDefaultProvider({ name: 'ropsten', chainId: 3 });
+    this.wallet.provider = ethers.providers.getDefaultProvider();
     this.onAmountChange = this.onAmountChange.bind(this);
     this.onAddressChange = this.onAddressChange.bind(this);
     this.onSendTokens = this.onSendTokens.bind(this);
@@ -55,7 +55,7 @@ class SendTokens extends Component {
   componentWillReceiveProps(nextProps){
     if (nextProps.wallet.length > 0) {
       this.wallet = new ethers.Wallet(nextProps.wallet);
-      this.wallet.provider = ethers.providers.getDefaultProvider({ name: 'ropsten', chainId: 3 });
+      this.wallet.provider = ethers.providers.getDefaultProvider();
       this.getBalance();
       this.setState({amount: '', address: ''})
     }

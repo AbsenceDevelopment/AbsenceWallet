@@ -23,7 +23,7 @@ class Donate extends Component {
     }
 
     this.wallet = new ethers.Wallet(this.state.selectedWallet);
-    this.wallet.provider = ethers.providers.getDefaultProvider({ name: 'ropsten', chainId: 3 });
+    this.wallet.provider = ethers.providers.getDefaultProvider();
     this.onKeyChange = this.onKeyChange.bind(this);
     this.donate = this.donate.bind(this);
     this.onDonateAll = this.onDonateAll.bind(this);
@@ -48,7 +48,7 @@ class Donate extends Component {
   selectWallet(wallet){
     this.setState({selectedWallet: wallet, selectorOn: false});
     this.wallet = new ethers.Wallet(wallet);
-    this.wallet.provider = ethers.providers.getDefaultProvider({ name: 'ropsten', chainId: 3 });
+    this.wallet.provider = ethers.providers.getDefaultProvider();
     this.getBalance();
   }
   getBalance(){

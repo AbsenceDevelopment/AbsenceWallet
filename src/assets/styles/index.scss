@@ -235,3 +235,21 @@ p{
   border: 1px solid #F3F3F3;
   border-radius: 5px;
 }
+
+.notificationBar{
+  padding: 20px;
+  color: white;
+  background-color: #7DD606;
+  position: absolute;
+  width: calc(100% - 40px);
+  .notificationsActions{
+    justify-content: center;
+    .btn{
+      box-shadow: none;
+      max-height: min-content;
+      border: none;
+      align-self: center;
+      color: $brandBlack;
+    }
+  }
+}

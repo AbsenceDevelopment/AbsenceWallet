@@ -64,6 +64,7 @@
 .mainContentWrapper{
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
 
   &::-webkit-scrollbar {
     width: 5px;

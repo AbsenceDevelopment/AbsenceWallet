@@ -29,22 +29,25 @@ class Cart extends Component {
       <div className={cardClasses} onClick={() => this.props.onClick(this.props.wallet.id)}>
         <h1>{this.props.wallet.walletName ? this.props.wallet.walletName : "A Wallet"}</h1>
         <p><small>{this.state.address}</small></p>
-        <div className="flex row cardBalanceWrapper">
-          <div className="flex flex-grid-6">
-            <p>Ethereum</p>
+        {this.state.balance !== "Loading..." ? (
+        <div>
+          <div className="flex row cardBalanceWrapper">
+            <div className="flex flex-grid-6">
+              <p>Ethereum</p>
+            </div>
+            <div className="flex flex-grid-6 last-flex">
+              <h2>{Number(this.state.balance).toFixed(7)}</h2>
+            </div>
           </div>
-          <div className="flex flex-grid-6 last-flex">
-            <h2>{Number(this.state.balance).toFixed(7)}</h2>
+          <div className="flex row cardConvertionWrapper">
+            <div className="flex flex-grid-6">
+              <p>{this.props.currency}</p>
+            </div>
+            <div className="flex flex-grid-6 last-flex">
+              <h2>{Number(this.state.balance * this.props.rate).toFixed(5)}</h2>
+            </div>
           </div>
-        </div>
-        <div className="flex row cardConvertionWrapper">
-          <div className="flex flex-grid-6">
-            <p>{this.props.currency}</p>
-          </div>
-          <div className="flex flex-grid-6 last-flex">
-            <h2>{Number(this.state.balance * this.props.rate).toFixed(5)}</h2>
-          </div>
-        </div>
+        </div>): (<p>Loading</p>)}
       </div>
     );
   }

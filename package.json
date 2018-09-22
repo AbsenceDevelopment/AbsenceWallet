@@ -1,8 +1,10 @@
 {
   "name": "absence-wallet",
-  "version": "0.1.0",
+  "productName": "Absence Wallet",
+  "version": "0.1.1",
   "homepage": "./",
   "main": "public/electron.js",
+  "repository": "https://github.com/AbsenceDevelopment/AbsenceWallet",
   "private": true,
   "author": "bannik",
   "dependencies": {
@@ -10,6 +12,7 @@
     "cross-env": "^5.2.0",
     "crypto-json": "^2.0.2",
     "electron-is-dev": "^0.3.0",
+    "electron-updater": "^3.1.2",
     "electron-util": "^0.9.1",
     "ethers": "^3.0.27",
     "moment": "^2.22.2",
@@ -37,6 +40,7 @@
   "scripts": {
     "start": "concurrently \"cross-env BROWSER=none react-app-rewired start\" \"wait-on http://localhost:3000 && electron .\"",
     "build": "react-app-rewired build && yarn electron-build",
+    "ship": "react-app-rewired build && yarn electron-build -p always",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "react-build": "react-scripts build",

@@ -13,16 +13,39 @@ import CreateWallet from '../CreateWallet/CreateWallet';
 import CreatePassword from '../CreatePassword/CreatePassword';
 import AuthPassword from '../AuthPassword/AuthPassword';
 import Topbar from '../../components/Topbar/Topbar';
+import UpdateBar from '../../components/UpdateBar/UpdateBar';
 
 import './app.scss';
-
+const electron = window.require("electron");
+const Menu = electron.remote.Menu;
+const {ipcRenderer} = window.require('electron')
 
 class App extends Component {
+  componentDidMount(){
+    var rightClickTemplate = [
+      { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+      { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+      { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+      { type: "separator" },
+      { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+    ];
+    let rightClickMenu = Menu.buildFromTemplate(rightClickTemplate);
+
+    window.addEventListener('contextmenu', (e) => {
+      e.preventDefault()
+      rightClickMenu.popup(electron.remote.getCurrentWindow())
+    }, false);
+  }
   render(){
+    let updatebar = null;
+    ipcRenderer.on('updateReady', function(event, text) {
+      updatebar = (<UpdateBar/>)
+    });
     return(
       <Router>
         <div className="containerFluid flex column appWrapper">
           <Topbar/>
+          {updatebar}
           <Switch>
             <Route path="/createWallet" component={CreateWallet}/>
             <Route path="/importKey" component={ImportKey}/>

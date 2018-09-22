@@ -16,10 +16,15 @@ import './mainWallet.scss';
 class MainWallet extends Component {
   constructor(props){
     super(props);
-    this.state = {}
+    this.state = {
+      updateReady: false
+    }
+    this.mounted;
   }
 
   componentWillMount(){
+    this.mounted = true;
+    let self = this;
     if (this.props.wallets.length === 0) {
       this.props.history.push('/landing')
     }
@@ -29,6 +34,9 @@ class MainWallet extends Component {
     if (this.props.selectedCurrency && this.props.selectedCurrency.length === 0) {
       this.props.selectCurrency("USD");
     }
+  }
+  componentWillUnmount(){
+    this.mount = false;
   }
   render() {
     return (
