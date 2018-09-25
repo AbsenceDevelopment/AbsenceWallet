@@ -28,6 +28,7 @@ class App extends Component {
     }
   }
   componentDidMount(){
+    let self = this;
     var rightClickTemplate = [
       { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
       { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
@@ -42,7 +43,7 @@ class App extends Component {
       rightClickMenu.popup(electron.remote.getCurrentWindow())
     }, false);
     ipcRenderer.on('updateReady', function(event, text) {
-      this.setState({updateReady: true})
+      self.setState({updateReady: true})
     });
     ipcRenderer.on('updateAvailable', function(){
       alert('There is an update available!');
