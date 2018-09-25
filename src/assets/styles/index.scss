@@ -242,6 +242,7 @@ p{
   background-color: #7DD606;
   position: absolute;
   width: calc(100% - 40px);
+  z-index: 10000;
   .notificationsActions{
     justify-content: center;
     .btn{
