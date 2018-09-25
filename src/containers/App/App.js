@@ -45,9 +45,6 @@ class App extends Component {
     ipcRenderer.on('updateReady', function(event, text) {
       self.setState({updateReady: true})
     });
-    ipcRenderer.on('updateAvailable', function(){
-      alert('There is an update available!');
-    })
   }
   render(){
     let updatebar = null;

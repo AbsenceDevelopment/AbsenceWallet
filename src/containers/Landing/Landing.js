@@ -25,12 +25,6 @@ class Landing extends Component {
         self.props.history.push('/validatePassword');
       }else{
         self.props.updateInitial(true);
-        ipcRenderer.on('updateNotReady', function(event, text) {
-          alert('You have already the latest version running!');
-        });
-        ipcRenderer.on('error', function(event, text) {
-          alert('Oopsie');
-        });
       }
     });
     // walletDb.remove({ }, { multi: true }, function (err, numRemoved) {

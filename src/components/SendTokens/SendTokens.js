@@ -24,7 +24,7 @@ class SendTokens extends Component {
 
   onSendTokens(){
     let self = this;
-    if (this.state.amount.length > 0 && this.state.address.length > 0) {
+    if (this.state.amount.length > 0 && this.state.address.length > 0 && !this.state.errorInput) {
       let amount = ethers.utils.parseEther(this.state.amount);
       let address = this.state.address;
 

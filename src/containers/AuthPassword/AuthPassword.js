@@ -37,14 +37,6 @@ class AuthPassword extends Component {
       this.props.history.push('/landing');
     }
   }
-  componentDidMount(){
-    ipcRenderer.on('updateNotReady', function(event, text) {
-      alert('You have already the latest version running!');
-    });
-    ipcRenderer.on('error', function(event, text) {
-      alert('There was an error while updating your app');
-    });
-  }
   render() {
     return (
       <div className="flex column justifyCenter authWrapper">
