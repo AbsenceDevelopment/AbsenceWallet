@@ -21,6 +21,11 @@ const Menu = electron.remote.Menu;
 const {ipcRenderer} = window.require('electron')
 
 class App extends Component {
+  constructor(){
+    this.state = {
+      updateReady: false
+    }
+  }
   componentDidMount(){
     var rightClickTemplate = [
       { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
@@ -35,12 +40,18 @@ class App extends Component {
       e.preventDefault()
       rightClickMenu.popup(electron.remote.getCurrentWindow())
     }, false);
+    ipcRenderer.on('updateReady', function(event, text) {
+      this.setState({updateReady: true})
+    });
+    ipcRenderer.on('updateAvailable', function(){
+      alert('There is an update available!');
+    })
   }
   render(){
-    ipcRenderer.on('updateReady', function(event, text) {
-      updatebar = (<UpdateBar/>)
-    });
     let updatebar = null;
+    if (this.state.updateReady) {
+      updatebar = (<UpdateBar/>)
+    }
     return(
       <Router>
         <div className="containerFluid flex column appWrapper">

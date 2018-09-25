@@ -88,6 +88,10 @@ app.on("activate", () => {
   }
 });
 
+autoUpdater.on('update-available', (info) => {
+  mainWindow.webContents.send('updateAvailable');
+});
+
 autoUpdater.on('update-downloaded', (info) => {
   mainWindow.webContents.send('updateReady');
 });
