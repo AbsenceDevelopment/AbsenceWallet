@@ -99,8 +99,8 @@ class Donate extends Component {
         <div className="flex column justifyCenter flex-grid-6 donateFormWrapper whiteBox">
           <h1>Would you consider Donating?</h1>
           <WalletSelector selectedWallet={this.state.selectedWallet} onClick={this.selectWallet} wallets={this.props.wallets} label="Donate From"/>
-          <div className={this.state.errorInput ? "flex column inputWrap error" : "flex column inputWrap"}>
-            <label>{this.state.errorInput ? "Insufficient Balance" : "Amount to Transfer"}</label>
+          <div className="inputWrap flex column availableBalanceWrap">
+            <label>Amount available</label>
             <div className="row flex flexAuto">
               <div className="flex column flexAuto">
                 <p>{balance}</p>
@@ -110,9 +110,9 @@ class Donate extends Component {
               </div>
             </div>
           </div>
-          <div className="flex column inputWrap">
+          <div className={this.state.errorInput ? "flex column inputWrap error" : "flex column inputWrap"}>
             <label>Amount to donate</label>
-            <input type="number" value={this.state.amount} onChange={this.onKeyChange} placeholder="How much would you donate"/>
+            <input type="number" value={this.state.amount} onChange={this.onKeyChange} placeholder={this.state.errorInput ? "Insufficient Balance" : "How much would you donate"}/>
           </div>
           <button className="btn btnBlue" onClick={this.donate}>Donate</button>
         </div>
