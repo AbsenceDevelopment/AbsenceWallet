@@ -23,7 +23,7 @@ function createWindow() {
 
 app.on("ready", function(){
   createWindow();
-  autoUpdater.checkForUpdates();
+  autoUpdater.checkForUpdatesAndNotify();
 
   var template = [{
       label: "Application",
@@ -61,7 +61,7 @@ app.on("activate", () => {
 });
 
 autoUpdater.on('update-downloaded', (info) => {
-  win.webContents.send('updateReady');
+  mainWindow.webContents.send('updateReady');
 });
 
 

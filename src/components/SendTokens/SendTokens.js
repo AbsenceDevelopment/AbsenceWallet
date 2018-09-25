@@ -42,10 +42,15 @@ class SendTokens extends Component {
     this.setState({amount: this.state.balance});
   }
   getBalance(){
+    let self = this;
+    let walletBalance;
     this.wallet.getBalance()
     .then((data) => {
-      this.setState({
-        balance: ethers.utils.formatEther(data),
+      this.wallet.estimateGas(data).then(function(gasEstimate){
+        walletBalance = data;
+        self.setState({
+          balance: ethers.utils.formatEther(walletBalance) - ethers.utils.formatEther(gasEstimate),
+        })
       })
     });
   }
