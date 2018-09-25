@@ -14,9 +14,11 @@ class SendTokens extends Component {
     this.onSendTokens = this.onSendTokens.bind(this);
     this.getBalance = this.getBalance.bind(this);
     this.onSendAll = this.onSendAll.bind(this);
+    this.calculateGas = this.calculateGas.bind(this);
     this.state = {
       amount: '',
-      address: ''
+      address: '',
+      errorInput: false
     }
   }
 
@@ -34,6 +36,7 @@ class SendTokens extends Component {
   }
   onAmountChange(event){
     this.setState({amount: event.target.value});
+    this.calculateGas(event.target.value);
   }
   onAddressChange(event){
     this.setState({address: event.target.value});
@@ -43,7 +46,7 @@ class SendTokens extends Component {
   }
   getBalance(){
     let self = this;
-    let walletBalance;
+    let walletBalance = "";
     this.wallet.getBalance()
     .then((data) => {
       if (ethers.utils.formatEther(data) !== "0.0") {
@@ -54,24 +57,38 @@ class SendTokens extends Component {
           })
         })
       }else{
-      self.setState({
-        balance: ethers.utils.formatEther(data),
-      })
+        self.setState({
+          balance: ethers.utils.formatEther(data),
+        })
       }
     });
+  }
+  calculateGas(amount){
+    let self = this;
+    if (amount) {
+      this.wallet.estimateGas(ethers.utils.parseEther(amount)).then(function(gasEstimate){
+        if (amount + parseInt(ethers.utils.formatEther(gasEstimate)) > self.state.balance) {
+          self.setState({errorInput: true});
+        }else{
+          self.setState({errorInput: false});
+        }
+      });
+    }else{
+      self.setState({errorInput: false});
+    }
   }
   componentDidMount(){
     this.getBalance();
   }
   componentWillReceiveProps(nextProps){
     if (nextProps.wallet.length > 0) {
-      this.wallet = new ethers.Wallet(nextProps.wallet);
-      this.wallet.provider = ethers.providers.getDefaultProvider();
-      this.getBalance();
-      this.setState({amount: '', address: ''})
-    }
-    if (nextProps.wallet !== this.props.wallet) {
-      this.setState({balance: 'Loading...'})
+      if (nextProps.wallet !== this.props.wallet) {
+        this.setState({balance: 'Loading...'});
+        this.wallet = new ethers.Wallet(nextProps.wallet);
+        this.wallet.provider = ethers.providers.getDefaultProvider();
+        this.getBalance();
+        this.setState({amount: '', address: ''})
+      }
     }
   }
   render() {
@@ -84,8 +101,8 @@ class SendTokens extends Component {
             <label htmlFor="amountInput">Receiver Address</label>
             <input id="amountInput" type="text" value={this.state.address} onChange={this.onAddressChange} placeholder="0x..."/>
           </div>
-          <div className="flex column inputWrap">
-            <label htmlFor="amountInput">Amount to Transfer</label>
+          <div className={this.state.errorInput ? "flex column inputWrap error" : "flex column inputWrap"}>
+            <label htmlFor="amountInput">{this.state.errorInput ? "Insufficient Balance" : "Amount to Transfer"}</label>
             <input id="amountInput" type="number" value={this.state.amount} onChange={this.onAmountChange} placeholder="How much would you like to send"/>
           </div>
           <div className="inputWrap flex column availableBalanceWrap">
