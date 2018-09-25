@@ -4,6 +4,7 @@ const app = electron.app;
 const ipcMain = electron.ipcMain;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
+const shell = electron.shell;
 
 const path = require("path");
 const isDev = require("electron-is-dev");
@@ -23,12 +24,13 @@ function createWindow() {
 
 app.on("ready", function(){
   createWindow();
-  autoUpdater.checkForUpdatesAndNotify();
 
   var template = [{
       label: "Application",
       submenu: [
           { label: "About", accelerator: "Command+I", click: function() { shell.openExternal('http://absence.one'); }},
+          { label: "Check For Updates", accelerator: "Command+U", click: function() { autoUpdater.checkForUpdates() }},
+          { type: "separator" },
           { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
       ]}, {
       label: "Edit",
@@ -46,6 +48,11 @@ app.on("ready", function(){
   let menu = Menu.buildFromTemplate(template);
 
   Menu.setApplicationMenu(menu);
+  const page = mainWindow.webContents;
+
+  page.once('did-frame-finish-load', () => {
+    autoUpdater.checkForUpdates();
+  });
 });
 
 app.on("window-all-closed", () => {
@@ -64,6 +71,12 @@ autoUpdater.on('update-downloaded', (info) => {
   mainWindow.webContents.send('updateReady');
 });
 
+autoUpdater.on('update-not-available', (info) => {
+  mainWindow.webContents.send('updateNotReady');
+})
+autoUpdater.on('error', (err) => {
+  mainWindow.webContents.send('error');
+})
 
 ipcMain.on("quitAndInstall", (event, arg) => {
   autoUpdater.quitAndInstall();

@@ -46,5 +46,12 @@
     "react-build": "react-scripts build",
     "electron-build": "electron-builder",
     "release": "yarn react-build && electron-builder --publish=always"
+  },
+  "build": {
+    "publish": [{
+       "provider": "github",
+       "owner": "AbsenceDevelopment",
+       "repo": "AbsenceWallet"
+    }]
   }
 }
