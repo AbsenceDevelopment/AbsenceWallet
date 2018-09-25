@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateWallet, selectWallet } from '../../actions/walletActions';
 import { addPassword } from '../../actions/passwordActions';
 import { decryptAsync } from '../../lib/dataHandler';
+const {ipcRenderer} = window.require('electron');
 
 class AuthPassword extends Component {
   constructor(props){
@@ -35,6 +36,14 @@ class AuthPassword extends Component {
     if (this.props.wallets.length === 0) {
       this.props.history.push('/landing');
     }
+  }
+  componentDidMount(){
+    ipcRenderer.on('updateNotReady', function(event, text) {
+      alert('You have already the latest version running!');
+    });
+    ipcRenderer.on('error', function(event, text) {
+      alert('There was an error while updating your app');
+    });
   }
   render() {
     return (

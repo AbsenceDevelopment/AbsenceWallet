@@ -6,6 +6,7 @@ import Cart from '../../components/Cart/Cart';
 import TransactionsList from '../../components/TransactionsList/TransactionsList';
 import ReceiveTokens from '../../components/ReceiveTokens/ReceiveTokens';
 import SendTokens from '../../components/SendTokens/SendTokens';
+const {ipcRenderer} = window.require('electron')
 
 class Wallets extends Component {
   constructor(props){
@@ -38,6 +39,12 @@ class Wallets extends Component {
   }
   componentDidMount(){
     this.tickerInterval = setInterval(() => this.ticker(), 5000);
+    ipcRenderer.on('updateNotReady', function(event, text) {
+      alert('You have already the latest version running!');
+    });
+    ipcRenderer.on('error', function(event, text) {
+      alert('Oopsie');
+    });
   }
   componentWillUnmount(){
     clearInterval(this.tickerInterval);

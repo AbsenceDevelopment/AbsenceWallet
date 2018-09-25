@@ -35,13 +35,6 @@ class App extends Component {
       e.preventDefault()
       rightClickMenu.popup(electron.remote.getCurrentWindow())
     }, false);
-
-    ipcRenderer.on('updateNotReady', function(event, text) {
-      alert('You have already the latest version running!');
-    });
-    ipcRenderer.on('error', function(event, text) {
-      alert('Oopsie');
-    });
   }
   render(){
     ipcRenderer.on('updateReady', function(event, text) {

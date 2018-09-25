@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { walletDb } from '../../localdb.js';
 import { addWallet } from '../../actions/walletActions';
 import { updateInitial } from '../../actions/appStateActions';
+const {ipcRenderer} = window.require('electron');
 
 class Landing extends Component {
   constructor(props){
@@ -24,6 +25,12 @@ class Landing extends Component {
         self.props.history.push('/validatePassword');
       }else{
         self.props.updateInitial(true);
+        ipcRenderer.on('updateNotReady', function(event, text) {
+          alert('You have already the latest version running!');
+        });
+        ipcRenderer.on('error', function(event, text) {
+          alert('Oopsie');
+        });
       }
     });
     // walletDb.remove({ }, { multi: true }, function (err, numRemoved) {

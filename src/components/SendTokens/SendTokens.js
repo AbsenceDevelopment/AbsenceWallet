@@ -46,12 +46,18 @@ class SendTokens extends Component {
     let walletBalance;
     this.wallet.getBalance()
     .then((data) => {
-      this.wallet.estimateGas(data).then(function(gasEstimate){
-        walletBalance = data;
-        self.setState({
-          balance: ethers.utils.formatEther(walletBalance) - ethers.utils.formatEther(gasEstimate),
+      if (ethers.utils.formatEther(data) !== "0.0") {
+        this.wallet.estimateGas(data).then(function(gasEstimate){
+          walletBalance = data;
+          self.setState({
+            balance: ethers.utils.formatEther(walletBalance) - ethers.utils.formatEther(gasEstimate),
+          })
         })
+      }else{
+      self.setState({
+        balance: ethers.utils.formatEther(data),
       })
+      }
     });
   }
   componentDidMount(){
@@ -63,6 +69,9 @@ class SendTokens extends Component {
       this.wallet.provider = ethers.providers.getDefaultProvider();
       this.getBalance();
       this.setState({amount: '', address: ''})
+    }
+    if (nextProps.wallet !== this.props.wallet) {
+      this.setState({balance: 'Loading...'})
     }
   }
   render() {

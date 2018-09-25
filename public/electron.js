@@ -24,28 +24,49 @@ function createWindow() {
 
 app.on("ready", function(){
   createWindow();
-
-  var template = [{
-      label: "Application",
-      submenu: [
-          { label: "About", accelerator: "Command+I", click: function() { shell.openExternal('http://absence.one'); }},
-          { label: "Check For Updates", accelerator: "Command+U", click: function() { autoUpdater.checkForUpdates() }},
-          { type: "separator" },
-          { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
-      ]}, {
-      label: "Edit",
-      submenu: [
-          { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-          { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-          { type: "separator" },
-          { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-          { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-          { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-          { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
-      ]}
-  ];
-
-  let menu = Menu.buildFromTemplate(template);
+  if (isDev) {
+    var mainMenu = [{
+        label: "Application",
+        submenu: [
+            { label: "About", accelerator: "CommandORCtrl+I", click: function() { shell.openExternal('http://absence.one'); }},
+            { label: "Check For Updates", accelerator: "CommandORCtrl+U", click: function() { autoUpdater.checkForUpdates() }},
+            { label: "Go be developer", accelerator: "CommandORCtrl+Shift+i", click: function() { mainWindow.webContents.openDevTools() }},
+            { type: "separator" },
+            { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+        ]}, {
+        label: "Edit",
+        submenu: [
+            { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+            { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+            { type: "separator" },
+            { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+            { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+            { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+            { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+        ]}
+    ];
+  }else{
+    var mainMenu = [{
+        label: "Application",
+        submenu: [
+            { label: "About", accelerator: "Command+I", click: function() { shell.openExternal('http://absence.one'); }},
+            { label: "Check For Updates", accelerator: "Command+U", click: function() { autoUpdater.checkForUpdates() }},
+            { type: "separator" },
+            { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+        ]}, {
+        label: "Edit",
+        submenu: [
+            { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+            { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+            { type: "separator" },
+            { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+            { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+            { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+            { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+        ]}
+    ];
+  }
+  let menu = Menu.buildFromTemplate(mainMenu);
 
   Menu.setApplicationMenu(menu);
   const page = mainWindow.webContents;
