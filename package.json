@@ -40,7 +40,7 @@
   "scripts": {
     "start": "concurrently \"cross-env BROWSER=none react-app-rewired start\" \"wait-on http://localhost:3000 && electron .\"",
     "build": "react-app-rewired build && yarn electron-build",
-    "ship": "react-app-rewired build && yarn electron-build --mac --win --linux -p always",
+    "ship": "react-app-rewired build && yarn electron-build --mac --win -p always",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "react-build": "react-scripts build",
