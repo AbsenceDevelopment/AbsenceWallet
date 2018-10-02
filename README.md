@@ -16,3 +16,7 @@ yarn start
 ## Donate
 
 This product is based on donations right now. If you'd like us to invest more time on it, please donate. Donation can be used to increase some issue priority. We accept donations in ETH and you can use the following address: **0xDBb97F262Bc1068beF47138e7E95579Ae7dF7280**
+
+## Report an issue
+
+We will be using Github as the main platform to track any issues bugs or listen to your suggestions so in any of the cases listed go ahead and [create an issue](https://github.com/AbsenceDevelopment/AbsenceWallet/issues/new)
