@@ -2,6 +2,7 @@ const electron = require("electron");
 const {autoUpdater} = require("electron-updater");
 const app = electron.app;
 const ipcMain = electron.ipcMain;
+const Tray = electron.Tray;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
 const shell = electron.shell;
@@ -23,6 +24,7 @@ function createWindow() {
 }
 
 app.on("ready", function(){
+
   createWindow();
   if (isDev) {
     var mainMenu = [{

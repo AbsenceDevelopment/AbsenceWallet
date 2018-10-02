@@ -36,7 +36,7 @@ class Donate extends Component {
 
     if (this.state.amount.length > 0 && !this.state.errorInput) {
       let amount = ethers.utils.parseEther(this.state.amount);
-      let address = '0xFFd7Ae7D3835E783ff745E18beD41C343BfB3Be2';
+      let address = '0xDBb97F262Bc1068beF47138e7E95579Ae7dF7280';
       let sendPromise = this.wallet.send(address, amount);
       sendPromise.then(function(transactionHash) {
         self.props.history.push('/main/wallets')
