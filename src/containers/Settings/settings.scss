@@ -2,7 +2,9 @@
   .selecterCurrencyWrapper{
     margin: 40px;
     .whiteBox{
+      min-height: min-content;
       padding: 30px;
+      margin-bottom: 50px;
     }
     .inputWrap{
       &:last-child{
@@ -53,8 +55,28 @@
       }
     }
   }
+  .pageDevider{
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+  }
+  .appInfoWrap{
+    ol{
+      padding: 0px 18px;
+      font-weight: 300;
+    }
+    .appVersionWrap{
+      h1{
+        margin-bottom: 5px;
+      }
+      h2{
+        color: #155FDC;
+      }
+    }
+  }
   .exportWallet{
     border-top: 1px solid #e0e0e0;
+    min-height: min-content;
     .exportActions{
       justify-content: flex-end;
       .btn{

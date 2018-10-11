@@ -65,7 +65,7 @@ class CreateWallet extends Component {
             <form className="flex column flexAuto justifyEnd" onSubmit={this.createWallet}>
               <div className="flex column inputWrap">
                 <label htmlFor="walletName">Wallet Name</label>
-                <input id="walletName" type="text" defaultValue={this.state.walletName} placeholder="Wallet Name"/>
+                <input id="walletName" type="text" defaultValue={this.state.walletName} onChange={this.onNameChange} placeholder="Wallet Name"/>
               </div>
               <div className="flex column inputWrap">
                 <label htmlFor="walletMnemonic">Wallet Mnemonic</label>

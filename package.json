@@ -1,7 +1,7 @@
 {
   "name": "absence-wallet",
   "productName": "Absence Wallet",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "./",
   "main": "public/electron.js",
   "repository": "https://github.com/AbsenceDevelopment/AbsenceWallet",
@@ -15,6 +15,7 @@
     "electron-updater": "^3.1.2",
     "electron-util": "^0.9.1",
     "ethers": "^3.0.27",
+    "marked": "^0.5.1",
     "moment": "^2.22.2",
     "nedb": "^1.8.0",
     "qrcode": "^1.2.2",
@@ -57,10 +58,12 @@
     "linux": {
       "icon": "./build/icon.ico"
     },
-    "publish": [{
-       "provider": "github",
-       "owner": "AbsenceDevelopment",
-       "repo": "AbsenceWallet"
-    }]
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "AbsenceDevelopment",
+        "repo": "AbsenceWallet"
+      }
+    ]
   }
 }

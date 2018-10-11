@@ -246,11 +246,67 @@ p{
   .notificationsActions{
     justify-content: center;
     .btn{
+      &:first-child{
+        margin-right: 20px;
+      }
+      &.btnWhiteLined{
+        background-color: transparent;
+        border: 2px solid white;
+        color: white;
+      }
       box-shadow: none;
       max-height: min-content;
       border: none;
       align-self: center;
       color: $brandBlack;
     }
+  }
+}
+.modalWrap{
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  .modalOverlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  &.active{
+    display: flex;
+  }
+  .whiteBox{
+    align-self: center;
+    z-index: 100;
+  }
+  h1{
+    padding: 30px;
+    font-size: 28px;
+    font-weight: 300;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  p{
+    color: $brandBlack;
+    font-size: 14px;
+  }
+  ol{
+    color: $brandBlack;
+    font-size: 14px;
+    padding: 0px 20px;
+    font-weight: 300;
+  }
+  .content{
+    padding: 20px 30px 0px 30px;
+  }
+  .btn{
+    margin-left: 30px;
+    border: 0px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    max-width: max-content;
   }
 }

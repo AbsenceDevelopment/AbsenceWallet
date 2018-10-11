@@ -24,7 +24,6 @@ function createWindow() {
 }
 
 app.on("ready", function(){
-
   createWindow();
   if (isDev) {
     var mainMenu = [{

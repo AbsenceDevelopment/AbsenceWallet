@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import marked from 'marked'
 import './settings.scss';
 
 import { selectCurrency } from '../../actions/appStateActions';
 
 import WalletSelector from '../../components/WalletSelector/WalletSelector';
-
-const {clipboard} = window.require('electron');
+const {clipboard, remote} = window.require('electron');
 
 class Settings extends Component {
   constructor(props){
@@ -21,7 +21,8 @@ class Settings extends Component {
       password: '',
       passwordConfirmed: false,
       valueExported: '',
-      typeOfExported: ''
+      typeOfExported: '',
+      releaseNotes: null
     };
     this.toggleSelector = this.toggleSelector.bind(this);
     this.selectWallet = this.selectWallet.bind(this);
@@ -55,6 +56,19 @@ class Settings extends Component {
   }
   copyValue(){
     clipboard.writeText(this.state.valueExported);
+  }
+
+  componentDidMount(){
+    fetch('https://api.github.com/repos/AbsenceDevelopment/AbsenceWallet/releases')
+    .then(response =>  response.json())
+    .then(resData => {
+      var obj = resData.find(function (obj) { return obj.name === remote.app.getVersion(); });
+      if (obj) {
+        this.setState({releaseNotes: obj.body});
+      }else{
+        this.setState({releaseNotes: '<p>No notes available</p>'});
+      }
+    })
   }
   render() {
     let currencies = ["USD", "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"];
@@ -100,6 +114,7 @@ class Settings extends Component {
     }else{
       exportWalletArray = null;
     }
+    let versionInfo = this.state.releaseNotes ? (<div className="content" dangerouslySetInnerHTML={{__html: marked(this.state.releaseNotes)}}></div>) : 'Fetching...';
     return (
       <div className="flex column justifyCenter">
         <div className="flex column selecterCurrencyWrapper">
@@ -129,6 +144,16 @@ class Settings extends Component {
                 <input type="password" value={this.state.password} onChange={this.onPasswordChange} placeholder="Your Password"/>
               </div>
               {exportWalletArray}
+            </div>
+            <div className="flex column appInfoWrap">
+              <div className="appVersionWrap pageDevider">
+                <h1>Application Version</h1>
+                <h2>{remote.app.getVersion()}</h2>
+              </div>
+              <div className="pageDevider">
+                <h1>Version Notes</h1>
+                {versionInfo}
+              </div>
             </div>
           </div>
         </div>
