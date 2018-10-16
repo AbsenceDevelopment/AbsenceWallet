@@ -5,22 +5,24 @@ const {is} = window.require('electron-util');
 const remote = window.require('electron').remote;
 
 class Topbar extends Component {
+
   onClose(){
-    var window = remote.getCurrentWindow();
+    var window = remote.BrowserWindow.getFocusedWindow();
     window.close();
   }
   onMin(){
-    var window = remote.getCurrentWindow();
+    var window = remote.BrowserWindow.getFocusedWindow();
     window.minimize();
   }
   onMax(){
-    var window = remote.getCurrentWindow();
+    var window = remote.BrowserWindow.getFocusedWindow();
     if (!window.isMaximized()) {
        window.maximize();
     } else {
        window.unmaximize();
     }
   }
+
   render() {
     let classes;
     if (is.macos) {
