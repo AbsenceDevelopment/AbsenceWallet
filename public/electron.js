@@ -2,7 +2,6 @@ const electron = require("electron");
 const {autoUpdater} = require("electron-updater");
 const app = electron.app;
 const ipcMain = electron.ipcMain;
-const Tray = electron.Tray;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
 const shell = electron.shell;
@@ -14,7 +13,6 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 1440, height: 1024, frame: false });
-  app.setName("Absence Wallet");
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
