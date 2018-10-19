@@ -12,7 +12,13 @@ const isDev = require("electron-is-dev");
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 1440, height: 1024, frame: false });
+  mainWindow = new BrowserWindow({
+    width: 1100,
+    minWidth: 1100,
+    height: 700,
+    minHeight: 700,
+    titleBarStyle: 'hiddenInset'
+  });
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
@@ -103,5 +109,8 @@ autoUpdater.on('error', (err) => {
 })
 
 ipcMain.on("quitAndInstall", (event, arg) => {
-  autoUpdater.quitAndInstall();
+  if (mainWindow !== null) {
+    mainWindow.close()
+  }
+  autoUpdater.quitAndInstall(false);
 })

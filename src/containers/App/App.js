@@ -54,7 +54,6 @@ class App extends Component {
     return(
       <Router>
         <div className="containerFluid flex column appWrapper">
-          <Topbar/>
           {updatebar}
           <Switch>
             <Route path="/createWallet" component={CreateWallet}/>
