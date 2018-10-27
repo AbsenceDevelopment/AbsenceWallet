@@ -35,7 +35,9 @@ class ReceiveTokens extends Component {
       <div className="flex column flex-grid-6 receiveWrapper">
         <h1>Receive Tokens</h1>
         <div className="flex flexAuto column whiteBox">
-          <canvas id="walletQR"></canvas>
+          <div className="flex column flexAuto justify-center">
+            <canvas id="walletQR"></canvas>
+          </div>
           <h3>Your wallet address is:</h3>
           <p>{this.props.wallet}</p>
           <button className="btn btnBlue" onClick={this.copyAddress}>Copy Address</button>

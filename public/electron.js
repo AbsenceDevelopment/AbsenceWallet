@@ -17,7 +17,7 @@ function createWindow() {
     minWidth: 1100,
     height: 700,
     minHeight: 700,
-    titleBarStyle: 'hiddenInset'
+    frame: false
   });
   mainWindow.loadURL(
     isDev
