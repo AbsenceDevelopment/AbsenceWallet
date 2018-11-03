@@ -5,23 +5,24 @@
   top: 0;
   z-index: 100000;
   padding: 8px;
-  -webkit-user-select: none;
   -webkit-app-region: drag;
   justify-content: flex-end;
   &.macTop{
     justify-content: flex-start;
   }
   .closeBtn{
+    cursor: pointer;
     width: 10px;
     height: 10px;
+    -webkit-app-region: no-drag;
     border-radius: 20px;
     background-color: #FF6158;
     margin-right: 5px;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     border: 1px solid #E04640;
     &:hover{
+      cursor: pointer;
       &:after{
         background-color: rgba(0, 0, 0, .5);
       }
@@ -38,6 +39,8 @@
     }
   }
   .minBtn{
+    cursor: pointer;
+    -webkit-app-region: no-drag;
     width: 10px;
     height: 10px;
     border-radius: 10px;
@@ -47,6 +50,7 @@
     display: flex;
     justify-content: center;
     &:hover{
+      cursor: pointer;
       &:after{
         background-color: rgba(0, 0, 0, .5);
       }
@@ -63,14 +67,17 @@
     }
   }
   .maxBtn{
+    cursor: pointer;
     width: 10px;
     height: 10px;
     border-radius: 10px;
     background-color: #2ACE41;
     border: 1px solid #18AC2B;
     display: flex;
+    -webkit-app-region: no-drag;
     justify-content: center;
     &:hover{
+      cursor: pointer;
       &:after{
         background-color: rgba(0, 0, 0, .5);
       }

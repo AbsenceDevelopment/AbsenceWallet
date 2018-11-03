@@ -7,17 +7,14 @@ const remote = window.require('electron').remote;
 class Topbar extends Component {
 
   onClose(){
-    alert('Exit!');
     var window = remote.BrowserWindow.getFocusedWindow();
     window.close();
   }
   onMin(){
-    alert('Minimize!');
     var window = remote.BrowserWindow.getFocusedWindow();
     window.minimize();
   }
   onMax(){
-    alert('maximize!')
     var window = remote.BrowserWindow.getFocusedWindow();
     if (!window.isMaximized()) {
        window.maximize();

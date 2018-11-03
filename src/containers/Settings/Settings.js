@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import marked from 'marked'
+import QRCode from 'qrcode-react';
 import './settings.scss';
 
 import { selectCurrency } from '../../actions/appStateActions';
@@ -70,6 +71,10 @@ class Settings extends Component {
       }
     })
   }
+  componentWillReceiveProps(nextProps, nextState){
+    if (nextState.exported) {
+    }
+  }
   render() {
     let currencies = ["USD", "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"];
 
@@ -85,13 +90,18 @@ class Settings extends Component {
     let exportWalletArray;
     if (this.state.passwordConfirmed && this.state.valueExported) {
       exportWalletArray = (
-        <div className="flex column inputWrap">
-          <label>Your {this.state.typeOfExported}</label>
-          <input type="text" value={this.state.valueExported} readOnly />
-          <div className="flex row inputWrap exportCancelActions">
-            <div className="flex row inputWrap">
-              <button className="btn btnPink" onClick={(e) => this.setState({typeOfExported: '', valueExported: ''})}>Cancel</button>
-              <button className="btn btnBlue" onClick={(e) => this.copyValue()}>Copy {this.state.typeOfExported}</button>
+        <div className="flex row exportedWrapper">
+          <div className="flex column flex-grid-3 align-center">
+            <QRCode value={this.state.valueExported}></QRCode>
+          </div>
+          <div className="flex column flex-grid-9 last-flex inputWrap">
+            <label>Your {this.state.typeOfExported}</label>
+            <input type="text" value={this.state.valueExported} readOnly />
+            <div className="flex row inputWrap exportCancelActions">
+              <div className="flex row inputWrap">
+                <button className="btn btnPink" onClick={(e) => this.setState({typeOfExported: '', valueExported: ''})}>Cancel</button>
+                <button className="btn btnBlue" onClick={(e) => this.copyValue()}>Copy {this.state.typeOfExported}</button>
+              </div>
             </div>
           </div>
         </div>

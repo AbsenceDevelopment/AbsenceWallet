@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import QRCode from 'qrcode';
+import QRCode from 'qrcode-react';
 
 const {clipboard} = window.require('electron')
 
@@ -12,31 +12,13 @@ class ReceiveTokens extends Component {
   copyAddress(){
     clipboard.writeText(this.props.wallet)
   }
-  componentDidMount(){
-    if (this.props.wallet.length > 0) {
-      var canvas = document.getElementById('walletQR')
-
-      QRCode.toCanvas(canvas, this.props.wallet, function (error) {
-        if (error) console.error(error)
-      });
-    }
-  }
-  componentWillReceiveProps(nextProps){
-    if (nextProps.wallet.length > 0) {
-      var canvas = document.getElementById('walletQR')
-
-      QRCode.toCanvas(canvas, nextProps.wallet, function (error) {
-        if (error) console.error(error)
-      });
-    }
-  }
   render() {
     return (
       <div className="flex column flex-grid-6 receiveWrapper">
         <h1>Receive Tokens</h1>
         <div className="flex flexAuto column whiteBox">
           <div className="flex column flexAuto justify-center">
-            <canvas id="walletQR"></canvas>
+            <QRCode value={this.props.wallet}></QRCode>
           </div>
           <h3>Your wallet address is:</h3>
           <p>{this.props.wallet}</p>

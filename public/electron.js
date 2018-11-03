@@ -33,16 +33,17 @@ app.on("ready", function(){
     var mainMenu = [{
         label: "Application",
         submenu: [
-            { label: "About", accelerator: "CommandORCtrl+I", click: function() { shell.openExternal('http://absence.one'); }},
-            { label: "Check For Updates", accelerator: "CommandORCtrl+U", click: function() { autoUpdater.checkForUpdates() }},
-            { label: "Go be developer", accelerator: "CommandORCtrl+Shift+i", click: function() { mainWindow.webContents.openDevTools() }},
+            { label: "About", accelerator: "CmdOrCtrl+I", click: function() { shell.openExternal('http://absence.one'); }},
+            { label: "Check For Updates", accelerator: "CmdOrCtrl+U", click: function() { autoUpdater.checkForUpdates() }},
+            { label: "Go be developer", accelerator: "CmdorCtrl+Shift+i", click: function() { mainWindow.webContents.openDevTools() }},
             { type: "separator" },
-            { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+            { label: "Quit", accelerator: "CmdOrCtrl+Q", click: function() { app.quit(); }}
         ]}, {
         label: "Edit",
         submenu: [
             { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
             { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+            { label: "Go be developer", accelerator: "CommandORCtrl+Shift+i", click: function() { mainWindow.webContents.openDevTools() }},
             { type: "separator" },
             { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
             { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
@@ -109,8 +110,5 @@ autoUpdater.on('error', (err) => {
 })
 
 ipcMain.on("quitAndInstall", (event, arg) => {
-  if (mainWindow !== null) {
-    mainWindow.close()
-  }
-  autoUpdater.quitAndInstall(false);
+  autoUpdater.quitAndInstall();
 })
