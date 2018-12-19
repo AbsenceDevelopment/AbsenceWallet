@@ -19,7 +19,7 @@ You will not be able to ship the app since you do not have access to the repo. I
 
 ## Donate
 
-This product is based on donations right now. If you'd like us to invest more time on it, please donate. Donation can be used to increase some issue priority. We accept donations in ETH and you can use the following address: **0xDBb97F262Bc1068beF47138e7E95579Ae7dF7280**
+This product is based on donations right now. If you'd like us to invest more time on it, please donate. Donation can be used to increase some issue priority. We accept donations in ETH and you can use the following address: **0x1F0DF2153C95Eaa366c10116F36BcD0C058abb95**
 
 ## Report an issue
 
