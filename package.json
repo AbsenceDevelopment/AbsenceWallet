@@ -15,7 +15,7 @@
     "electron-updater": "^3.1.2",
     "electron-util": "^0.9.1",
     "ethers": "^3.0.27",
-    "marked": "^0.5.1",
+    "marked": "^0.6.1",
     "moment": "^2.22.2",
     "nedb": "^1.8.0",
     "qrcode-react": "^0.1.16",
